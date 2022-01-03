@@ -23,7 +23,6 @@ dependencies:
   xml: ^5.1.2
 
 dev_dependencies:
-  #analyzer: 1.7.2 # Pin the analyzer version to work around generation failure (was ^1.7.0)
   analyzer: ^3.0.0
   build: ^2.0.3
   build_config: ^1.0.0
