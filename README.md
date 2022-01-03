@@ -1,4 +1,3 @@
-# ezFlap
 ezFlap is a reactive markup library for Flutter.
 
 With ezFlap, you can:
