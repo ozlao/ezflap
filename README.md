@@ -22,10 +22,10 @@ Read the full documentation at [https://www.ezflap.io/docs](https://www.ezflap.i
 This is what an ezFlap version of the Flutter bootstrap project may look like:
 
 ### MyApp
-![MyApp.png](./docs/assets/MyApp.png)
+![MyApp.png](./doc-assets/MyApp.png)
 
 ### MyHomePage
-![MyHomePage.png](./docs/assets/MyHomePage.png)
+![MyHomePage.png](./doc-assets/MyHomePage.png)
 
 
 ## Getting Started

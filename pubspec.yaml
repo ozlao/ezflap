@@ -1,7 +1,7 @@
 name: ezflap
 description: Reactive Markup for Flutter.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+#publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 0.9.0-dev
 homepage: https://www.ezflap.io/
@@ -17,21 +17,22 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get: ^4.1.4
-  path: ^1.8.0
-  source_gen: ^1.0.2
-  xml: ^5.1.2
-
-dev_dependencies:
   analyzer: ^3.0.0
   build: ^2.0.3
-  build_config: ^1.0.0
-  build_resolvers: ^2.0.4
-  build_runner: ^2.0.6
   dart_style: ^2.1.1
+  get: ^4.1.4
   meta: ^1.7.0
+  path: ^1.8.0
+  source_gen: ^1.0.2
+  stack_trace: ^1.10.0
+  xml: ^5.1.2
 
   flutter_test:
     sdk: flutter
+
+dev_dependencies:
+  build_config: ^1.0.0
+  build_resolvers: ^2.0.4
+  build_runner: ^2.0.6
 
 flutter:
