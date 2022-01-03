@@ -1,0 +1,541 @@
+<!--
+/home/user/.config/JetBrains/IntelliJIdea2021.2/templates/ezflap.xml
+-->
+<templateSet group="ezFlap">
+	<!--
+	SECTIONS
+	-->
+	<template name="sec01_routeParams" value="/* ROUTE PARAMS (1) **/" description="Section #1: Route Parameters" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec02_models" value="/* MODELS (2) **/" description="Section #2: Models" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec03_props" value="/* PROPS (3) **/" description="Section #3: Props" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec04_eventEmitters" value="/* EVENT EMITTERS (4) **/" description="Section #4: Event Emitters" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec05_publicMethods" value="/* PUBLIC METHODS (5) **/" description="Section #5: Public Methods" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec06_consts" value="/* CONSTS (6) **/" description="Section #6: Constants" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec07_dependencies" value="/* DEPENDENCIES (7) **/" description="Section #7: Dependencies" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec08_zml" value="/* ZML (8) **/" description="Section #08: ZML" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec09_zss" value="/* ZSS (9) **/" description="Section #09: ZSS" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec10_refs" value="/* REFERENCES TO HOSTED WIDGETS (10) **/" description="Section #10: References to hosted widgets" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec11_boundFields" value="/* BOUND FIELDS (11) **/" description="Section #11: Bound Fields" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec12_privateFields" value="/* PRIVATE FIELDS (12) **/" description="Section #12: Private Fields" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec13_protectedFields" value="/* PROTECTED FIELDS (13) **/" description="Section #13: Protected Fields" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec14_computed" value="/* COMPUTED VALUES (14) **/" description="Section #14: Computed Values" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec15_protectedMethods" value="/* PROTECTED METHODS (15) **/" description="Section #15: Protected Methods (prefix: _)" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec16_boundMethods" value="/* BOUND METHODS (16) **/" description="Section #16: Bound Methods (_bound prefix)" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec17_watches" value="/* WATCHES (17) **/" description="Section #17: Watches" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec18_interfaceImplementations" value="/* INTERFACE IMPLEMENTATIONS (18) **/" description="Section #18: Interface Implementations" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec19_privateMethods" value="/* PRIVATE METHODS (19) **/" description="Section #19: Private Methods" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="sec20_lifecycle" value="/* LIFECYCLE (20) **/" description="Section #20: Lifecycle (onReady, etc.)" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+
+
+
+
+	<!--
+	ANNOTATIONS
+	-->
+
+	<!-- @EzComputed -->
+	<template name="ezc" value="@EzComputed(&quot;$LNAME$&quot;)&#10;$TYPE$ _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezcb" value="@EzComputed(&quot;$LNAME$&quot;)&#10;bool _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezcd" value="@EzComputed(&quot;$LNAME$&quot;)&#10;double _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezci" value="@EzComputed(&quot;$LNAME$&quot;)&#10;int _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezcn" value="@EzComputed(&quot;$LNAME$&quot;)&#10;num _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezcs" value="@EzComputed(&quot;$LNAME$&quot;)&#10;String _computed$UNAME$() {&#10;&#9;$END$&#10;}&#10;" description="@EzComputed - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzEmit -->
+	<template name="eze" value="@EzEmit(&quot;$LNAME$&quot;) late void Function($PARAMS$) _$$emit_$LNAME$; // --&gt; this._emit_$LNAME$$END$" description="@EzEmit" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzField -->
+	<template name="ezf" value="@EzField(&quot;$LNAME$&quot;) $TYPE$ _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezfb" value="@EzField(&quot;$LNAME$&quot;) late bool _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezfd" value="@EzField(&quot;$LNAME$&quot;) late double _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezfi" value="@EzField(&quot;$LNAME$&quot;) late int _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezfn" value="@EzField(&quot;$LNAME$&quot;) late num _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezfs" value="@EzField(&quot;$LNAME$&quot;) late String _$$$LNAME$; // --&gt; this._$LNAME$" description="@EzField - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzMethod -->
+	<template name="ezm" value="@EzMethod(&quot;$LNAME$&quot;)&#10;$TYPE$ _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - any return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmb" value="@EzMethod(&quot;$LNAME$&quot;)&#10;bool _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - bool return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmd" value="@EzMethod(&quot;$LNAME$&quot;)&#10;double _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - double return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmi" value="@EzMethod(&quot;$LNAME$&quot;)&#10;int _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - int return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmn" value="@EzMethod(&quot;$LNAME$&quot;)&#10;num _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - num return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezms" value="@EzMethod(&quot;$LNAME$&quot;)&#10;String _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - String return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmv" value="@EzMethod(&quot;$LNAME$&quot;)&#10;void _bound$UNAME$($PARAMS$) {&#10;    $END$&#10;}" description="@EzMethod - void return type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzModel -->
+	<template name="ezmodel" value="@EzModel() late $TYPE$ _$$model; // --&gt; this._model" description="@EzModel - default model, any type" toReformat="false" toShortenFQNames="true">
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmo" value="@EzModel(&quot;$LNAME$&quot;) late $TYPE$ _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmob" value="@EzModel(&quot;$LNAME$&quot;) late bool _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmod" value="@EzModel(&quot;$LNAME$&quot;) late double _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmoi" value="@EzModel(&quot;$LNAME$&quot;) late int _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmon" value="@EzModel(&quot;$LNAME$&quot;) late num _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezmos" value="@EzModel(&quot;$LNAME$&quot;) late String _$$model_$LNAME$; // --&gt; this._model_$LNAME$" description="@EzModel - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzOptionalModel -->
+	<template name="ezomodel" value="@EzOptionalModel() $TYPE$ _$$model = $DEFAULT$; // --&gt; this._model" description="@EzOptionalModel - default model, any type" toReformat="false" toShortenFQNames="true">
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomo" value="@EzOptionalModel(&quot;$LNAME$&quot;) $TYPE$ _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomob" value="@EzOptionalModel(&quot;$LNAME$&quot;) bool _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomod" value="@EzOptionalModel(&quot;$LNAME$&quot;) double _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomoi" value="@EzOptionalModel(&quot;$LNAME$&quot;) int _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomon" value="@EzOptionalModel(&quot;$LNAME$&quot;) num _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezomos" value="@EzOptionalModel(&quot;$LNAME$&quot;) String _$$model_$LNAME$ = $DEFAULT$; // --&gt; this._model_$LNAME$" description="@EzOptionalModel - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzProp -->
+	<template name="ezp" value="@EzProp(&quot;$LNAME$&quot;) late $TYPE$ _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezpb" value="@EzProp(&quot;$LNAME$&quot;) late bool _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezpd" value="@EzProp(&quot;$LNAME$&quot;) late double _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezpi" value="@EzProp(&quot;$LNAME$&quot;) late int _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezpn" value="@EzProp(&quot;$LNAME$&quot;) late num _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezps" value="@EzProp(&quot;$LNAME$&quot;) late String _$$prop_$LNAME$; // --&gt; this._prop_$LNAME$" description="@EzProp - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzRef -->
+	<template name="ezref" value="@EzRef(&quot;$LNAME$&quot;) $TYPE$? _$$ref_$LNAME$; // --&gt; this._ref_$LNAME$" description="@EzRef" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezrefs" value="@EzRefs(&quot;$LNAME$&quot;) late Map&lt;String, $TYPE$&gt; _$$refs_$LNAME$; // --&gt; this._refs_$LNAME$" description="@EzRefs" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzRouteParam -->
+	<template name="ezrp" value="@EzRouteParam(&quot;$LNAME$&quot;) late $TYPE$? _$$route_$LNAME$; // --&gt; this._route_$LNAME$" description="@EzRouteParam" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzWatch -->
+	<template name="ezw" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$($TYPE$ newValue, $TYPE$ oldValue) {&#10;    $END$&#10;}" description="@EzWatch - any type" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezwb" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$(bool newValue, bool oldValue) {&#10;    $END$&#10;}" description="@EzWatch - bool" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezwd" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$(double newValue, double oldValue) {&#10;    $END$&#10;}" description="@EzWatch - double" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezwi" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$(int newValue, int oldValue) {&#10;    $END$&#10;}" description="@EzWatch - int" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezwn" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$(num newValue, num oldValue) {&#10;    $END$&#10;}" description="@EzWatch - num" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezws" value="@EzWatch(&quot;$LNAME$&quot;)&#10;void _watch$UNAME$(String newValue, String oldValue) {&#10;    $END$&#10;}" description="@EzWatch - String" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzDI -->
+	<template name="ezdi" value="@EzDI() late $UNAME$ _$LNAME$;" description="@ezDI" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezdip" value="@EzDIProvider($UNAME$Resolver) late $UNAME$ProviderBase _$$$LNAME$Provider; // --&gt; this._$LNAME$Provider" description="@EzDIProvider" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="UNAME" expression="capitalize(LNAME)" defaultValue="" alwaysStopAt="false"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+
+
+	<!-- @EzValue -->
+	<template name="ezv" value="@EzValue() $TYPE$ _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - any type (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezvb" value="@EzValue() late bool _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - bool (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezvd" value="@EzValue() late double _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - double (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezvi" value="@EzValue() late int _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - int (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezvn" value="@EzValue() late num _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - num (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+	<template name="ezvs" value="@EzValue() late String _$$$LNAME$; // --&gt; this.$LNAME$" description="@EzValue - String (use with @EzReactive / @EzJson)" toReformat="false" toShortenFQNames="true">
+		<variable name="LNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+		<context>
+			<option name="DART" value="true"/>
+		</context>
+	</template>
+</templateSet>
