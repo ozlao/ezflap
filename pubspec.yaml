@@ -3,7 +3,7 @@ description: Reactive Markup for Flutter.
 
 #publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.9.0-dev
+version: 0.9.0
 homepage: https://www.ezflap.io/
 repository: https://github.com/ozlao/ezflap
 issue_tracker: https://github.com/ozlao/ezflap/issues
