@@ -1,8 +1,11 @@
+## 0.9.0+5
+* Cleanups
+
 ## 0.9.0+2
-* Added documentation.
+* Added documentation
 
 ## 0.9.0+1
-* Fixed links.
+* Fixed links
 
 ## 0.9.0
-* Initial release.
+* Initial release
