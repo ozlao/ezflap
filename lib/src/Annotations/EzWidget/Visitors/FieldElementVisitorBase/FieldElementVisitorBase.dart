@@ -3,6 +3,7 @@ import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzAnnotationVisitor.dart';
 import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 import 'package:ezflap/src/Annotations/Utils/Visitors/GenericFieldVisitor/Mixin/GenericFieldVisitorMixin.dart';
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 

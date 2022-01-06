@@ -58,6 +58,7 @@ class SvcZmlGenerator extends EzServiceBase {
 	}
 	
 	String _generateFromNode(AstNodeBase node) {
+		// ignore: dead_code
 		if (false) { }
 		else if (node is AstNodeConstructor) return this._generateFromNodeConstructor(node: node, isInList: false);
 		else if (node is AstNodeConstructorsList) return this._generateFromNodeConstructorsList(node);

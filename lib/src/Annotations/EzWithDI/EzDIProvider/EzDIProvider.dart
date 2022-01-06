@@ -1,5 +1,5 @@
 
-import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 import 'package:ezflap/src/Service/DependencyInjector/ResolverBase.dart';
 
 /// Full documentation: https://www.ezflap.io/deep-dive/di/di.html#injection-provider

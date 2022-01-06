@@ -3,6 +3,7 @@ import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/visitor.dart';
 import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:meta/meta.dart';
 

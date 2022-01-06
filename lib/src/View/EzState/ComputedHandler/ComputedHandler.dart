@@ -14,7 +14,10 @@ class $ComputedHandler<T> extends Guid {
 	final $RxWrapper<T> _cachedValue = $RxWrapper();
 	final Rx<bool> _rxDirty = false.obs;
 	final RxNotifier _observer = RxNotifier();
+
+	// ignore: cancel_subscriptions
 	late StreamSubscription _sub;
+
 	TFuncCancel? _funcCancelDirtyTick;
 	final Rx<bool> _rxDummy = false.obs;
 

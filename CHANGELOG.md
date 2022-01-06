@@ -1,3 +1,6 @@
+## 0.9.0+6
+* Simplified dependencies
+
 ## 0.9.0+5
 * Cleanups
 

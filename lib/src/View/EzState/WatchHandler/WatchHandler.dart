@@ -11,7 +11,10 @@ class $WatchHandler<T> {
 	final dynamic Function() funcGetWatchedValueOrRxWrapperOrRx;
 	final void Function(T newValue, T oldValue) funcOnChange;
 	final RxNotifier _observer = RxNotifier();
+
+	// ignore: cancel_subscriptions
 	late StreamSubscription _sub;
+
 	final Rx<bool> _rxDummy = false.obs;
 	bool _lastValueWasSet = false;
 	late T _lastValue;

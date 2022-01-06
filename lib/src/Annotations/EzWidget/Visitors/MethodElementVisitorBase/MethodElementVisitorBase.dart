@@ -4,6 +4,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzAnnotationVisitor.dart';
 import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 import 'package:meta/meta.dart';
 
 class EzMethodDataBase extends EzAnnotationData {

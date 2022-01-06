@@ -1,5 +1,5 @@
 
-import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 
 /// Full documentation:
 ///  - In `@EzReactive` classes: https://www.ezflap.io/deep-dive/reactive-data-entities/reactive-data-entities.html#ezreactive

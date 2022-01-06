@@ -2,12 +2,9 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 
 typedef _TFuncConvertElementAnnotationToEzAnnotation<T extends EzAnnotationBase> = T? Function(ElementAnnotation);
-
-abstract class EzAnnotationBase {
-	const EzAnnotationBase();
-}
 
 abstract class EzAnnotationData {
 

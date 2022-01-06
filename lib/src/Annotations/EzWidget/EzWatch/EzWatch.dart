@@ -1,5 +1,5 @@
 
-import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
+import 'package:ezflap/src/Annotations/Utils/EzAnnotationBase/EzAnnotationBase.dart';
 
 /// Full documentation: https://www.ezflap.io/essentials/watches/watches.html
 ///
