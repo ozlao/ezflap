@@ -1,3 +1,6 @@
+## 0.9.0+8
+* Improved analysis_options.yaml and cleaned up
+
 ## 0.9.0+7
 * Updated readme
 
