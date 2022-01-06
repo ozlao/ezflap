@@ -27,6 +27,8 @@ class EzServiceGenerator extends GeneratorForAnnotation<EzService> {
 			String className = this._getClassName();
 
 			return """
+				// ignore_for_file: invalid_use_of_internal_member
+
 				abstract class _EzServiceBase extends ${baseClassName} {
 					static ${className} i() { return \$Singleton.get(() => ${className}()); }
 					${forEzDIs}

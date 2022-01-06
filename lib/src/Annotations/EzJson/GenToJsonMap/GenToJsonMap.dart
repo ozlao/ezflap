@@ -66,13 +66,17 @@ class GenToJsonMap with EzJsonMixin {
 				return valueIdentifier;
 			}
 			else if (node.isRxList()) {
-				return "${valueIdentifier}.value";
+				// treat the value as a List and return it directly
+				return valueIdentifier;
+				// return "${valueIdentifier}.value";
 			}
 			else if (node.isSet()) {
 				return "${valueIdentifier}.toList()";
 			}
 			else if (node.isRxSet()) {
-				return "${valueIdentifier}.value.toList()";
+				//return "${valueIdentifier}.value.toList()";
+				// treat the value as a List and return it directly
+				return "${valueIdentifier}.toList()";
 			}
 			else assert(false);
 		}
@@ -103,7 +107,9 @@ class GenToJsonMap with EzJsonMixin {
 				return valueIdentifier;
 			}
 			else if (node.isRxMap()) {
-				return "${valueIdentifier}.value";
+				//return "${valueIdentifier}.value";
+				// treat the value as a Map and return it directly
+				return valueIdentifier;
 			}
 			else assert(false);
 		}
@@ -115,7 +121,8 @@ class GenToJsonMap with EzJsonMixin {
 		String effectiveValueIdentifier = valueIdentifier;
 		String nullableChar = (node.isNullable ? "?" : "");
 		if (node.isRx()) {
-			effectiveValueIdentifier = "${valueIdentifier}${nullableChar}.value";
+			//effectiveValueIdentifier = "${valueIdentifier}${nullableChar}.value";
+			effectiveValueIdentifier = "${valueIdentifier}";
 			nullableChar = (mapValueType.isNullable ? "?" : "");
 		}
 		String generatedMap = """
