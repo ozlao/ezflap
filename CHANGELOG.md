@@ -1,3 +1,6 @@
+## 0.9.0+7
+* Updated readme
+
 ## 0.9.0+6
 * Simplified dependencies
 
