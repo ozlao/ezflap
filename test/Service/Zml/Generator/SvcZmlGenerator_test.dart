@@ -185,19 +185,19 @@ void main() async {
 					return (Column(
 						children: [
 							(Text(${t("text 1")})),
-							...EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => Text(${t("text 2")})),
-							...EzStateBase.\$autoMapper(arrTexts, (v, idx, _\$2) => Text(${t("text 3")})),
-							...EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => ( 
+							...\$EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => Text(${t("text 2")})),
+							...\$EzStateBase.\$autoMapper(arrTexts, (v, idx, _\$2) => Text(${t("text 3")})),
+							...\$EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => ( 
 								(myIf) ? (Text(${t("text 4")})) : null
 							)),
-							...EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) =>  
+							...\$EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) =>  
 								Visibility(
 									child: Text(${t("text 5")}),
 									maintainState: true,
 									visible: myShow,
 								)
 							),
-							...EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => (
+							...\$EzStateBase.\$autoMapper(arrTexts, (v, _\$1, _\$2) => (
 								(myIf) ?
 									(
 										Visibility(
@@ -297,7 +297,7 @@ void main() async {
 											if (shouldRenderText6)
 												(Text(${t("text 6")})),
 										if (((groupTest5)))
-											...EzStateBase.\$autoMapper(arrItems, (item, _\$1, _\$2) => (
+											...\$EzStateBase.\$autoMapper(arrItems, (item, _\$1, _\$2) => (
 												(shouldInclude(item)) ? (Text(${t("text 7")})) : null
 											))
 									]

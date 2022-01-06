@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 @internal
 class $ComputedHandler<T> extends Guid {
 	final T Function() funcInvokeUserFunction; // e.g. () => this._computedAnswer()
-	final RxWrapper<T> _cachedValue = RxWrapper();
+	final $RxWrapper<T> _cachedValue = $RxWrapper();
 	final Rx<bool> _rxDirty = false.obs;
 	final RxNotifier _observer = RxNotifier();
 	late StreamSubscription _sub;

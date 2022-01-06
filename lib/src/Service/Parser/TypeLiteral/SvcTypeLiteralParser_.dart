@@ -7,7 +7,7 @@ import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 
 class SvcTypeLiteralParser extends EzServiceBase {
-	static SvcTypeLiteralParser i() { return Singleton.get(() => SvcTypeLiteralParser()); }
+	static SvcTypeLiteralParser i() { return $Singleton.get(() => SvcTypeLiteralParser()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 

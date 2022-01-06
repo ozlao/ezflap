@@ -32,7 +32,7 @@ import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 /// - tags are re-collected before starting with the next transformer. this
 ///   allows transformers to operate on the output of previous transformers.
 class SvcZmlTransformer extends EzServiceBase {
-	static SvcZmlTransformer i() { return Singleton.get(() => SvcZmlTransformer()); }
+	static SvcZmlTransformer i() { return $Singleton.get(() => SvcZmlTransformer()); }
 
 	static const String _COMPONENT = "SvcZmlTransformer";
 

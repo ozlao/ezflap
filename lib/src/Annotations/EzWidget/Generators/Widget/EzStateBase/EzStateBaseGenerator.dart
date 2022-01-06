@@ -205,14 +205,14 @@ class EzStateBaseGenerator extends WidgetGeneratorBase {
 
 	String _makeExtendsPart(String className, String? inheritedFromBaseClass, bool isBaseClass) {
 		String otherClassName = className.substring(0, className.length - "State".length);
-		String sExtends = "EzStateBase<${otherClassName}>";
+		String sExtends = "\$EzStateBase<${otherClassName}>";
 
 		if (this.isExtending()) {
 			sExtends = "${inheritedFromBaseClass}<T>";
 		}
 		else {
 			if (isBaseClass) {
-				sExtends = "EzStateBase<T>";
+				sExtends = "\$EzStateBase<T>";
 			}
 		}
 

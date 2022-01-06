@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 import 'package:meta/meta.dart';
 
-typedef _TFuncNotifyInitState = void Function(EzStateBase);
-typedef _TFuncNotifyDispose = void Function(EzStateBase);
+typedef _TFuncNotifyInitState = void Function($EzStateBase);
+typedef _TFuncNotifyDispose = void Function($EzStateBase);
 
 typedef TFuncEzStatefulWidgetFactory = EzStatefulWidgetBase Function(BuildContext);
 

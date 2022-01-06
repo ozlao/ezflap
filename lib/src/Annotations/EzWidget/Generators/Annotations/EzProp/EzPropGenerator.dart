@@ -26,7 +26,7 @@ class EzPropGenerator extends AnnotationGeneratorBase<EzProp, EzPropData, FieldE
 		String ch = this.getUnderscoreIfNotExtended();
 		String protectedSnippet = this.getProtectedSnippetIfExtended();
 		return """
-			RxWrapper<${data.typeWithNullability}> ${rxProp} = RxWrapper();
+			\$RxWrapper<${data.typeWithNullability}> ${rxProp} = \$RxWrapper();
 			${protectedSnippet}
 			${data.typeWithNullability} get ${ch}${data.derivedName} {
 				if (!this.${rxProp}.wasInit()) {

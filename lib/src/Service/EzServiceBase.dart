@@ -13,7 +13,7 @@ import 'package:meta/meta.dart';
 /// with `overrideBaseClassType`.
 /// In such case, the "custom" class passed in `overrideBaseClassType` must
 /// extend [EzServiceBase] (directly or indirectly).
-abstract class EzServiceBase extends Singleton {
+abstract class EzServiceBase extends $Singleton {
 	@internal
 	void $initDI([ Map<String, dynamic>? mapOverrides ]) {
 		// we need this so that all generated services can call super.$initDI()

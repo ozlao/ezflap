@@ -28,7 +28,7 @@ class EzServiceGenerator extends GeneratorForAnnotation<EzService> {
 
 			return """
 				abstract class _EzServiceBase extends ${baseClassName} {
-					static ${className} i() { return Singleton.get(() => ${className}()); }
+					static ${className} i() { return \$Singleton.get(() => ${className}()); }
 					${forEzDIs}
 					${forEzDIProviders}
 				}

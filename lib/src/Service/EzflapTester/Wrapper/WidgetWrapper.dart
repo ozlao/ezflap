@@ -74,7 +74,7 @@ class WidgetMockStatefulWidget extends _WidgetMockStatefulWidget {
 /// Full documentation: https://www.ezflap.io/testing/mock/mock.html#mock-hosted-widget
 ///
 /// Extend this class to mock an ezFlap widget.
-class MockWidgetStateBase extends EzStateBase<_WidgetMockStatefulWidget> {
+class MockWidgetStateBase extends $EzStateBase<_WidgetMockStatefulWidget> {
 	//
 	@override
 	@internal
@@ -141,7 +141,7 @@ class _ModelHandlerWithBackendValue<T> {
 	_ModelHandlerWithBackendValue({ required this.modelHandler, required this.rx });
 }
 
-class WidgetWrapper<TState extends EzStateBase<TWidget>, TWidget extends EzStatefulWidgetBase> implements $IWidgetWrapperForWidget {
+class WidgetWrapper<TState extends $EzStateBase<TWidget>, TWidget extends EzStatefulWidgetBase> implements $IWidgetWrapperForWidget {
 	late TWidget _widget;
 	TState? _widgetState;
 
@@ -185,8 +185,8 @@ class WidgetWrapper<TState extends EzStateBase<TWidget>, TWidget extends EzState
 
 	void _initLifecycleHandlers() {
 		this._widget.$initLifecycleHandlers(
-			(EzStateBase state) { this._widgetState = state as TState; },
-			(EzStateBase state) { this._widgetState = null; },
+			($EzStateBase state) { this._widgetState = state as TState; },
+			($EzStateBase state) { this._widgetState = null; },
 		);
 	}
 

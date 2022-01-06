@@ -191,7 +191,7 @@ void main() async {
 
 				dart: """
 					return (Text(\"""hello world\""",
-						textAlign: ((EzStateBase.\$testAttr(new, myStatus) && EzStateBase.\$testAttr(100, myId))) ? _zssStyle_1() : null
+						textAlign: ((\$EzStateBase.\$testAttr(new, myStatus) && \$EzStateBase.\$testAttr(100, myId))) ? _zssStyle_1() : null
 					));
 				""",
 
@@ -215,7 +215,7 @@ void main() async {
 
 				dart: """
 					return (Text(\"""hello world\""",
-						textAlign: ((EzStateBase.\$testAttr('new', myStatus) && EzStateBase.\$testAttr('100', myId))) ? _zssStyle_1() : null
+						textAlign: ((\$EzStateBase.\$testAttr('new', myStatus) && \$EzStateBase.\$testAttr('100', myId))) ? _zssStyle_1() : null
 					));
 				""",
 
@@ -250,8 +250,8 @@ void main() async {
 					return (Column(
 						children: [
 							(Text(\"""Text 1\""",
-								textAlign: ((EzStateBase.\$testAttr(10, seconds))) ? _zssStyle_1()
-									: ((EzStateBase.\$testAttr(20, seconds))) ? _zssStyle_2()
+								textAlign: ((\$EzStateBase.\$testAttr(10, seconds))) ? _zssStyle_1()
+									: ((\$EzStateBase.\$testAttr(20, seconds))) ? _zssStyle_2()
 										: (myClasses.containsAll({ "class2" })) ? _zssStyle_3()
 											: null
 							)),

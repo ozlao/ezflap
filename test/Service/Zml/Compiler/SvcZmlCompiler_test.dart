@@ -173,7 +173,6 @@ Future<void> main() async {
 			expect(nodeText1.isEzflapWidget, false);
 			expect(nodeText1.conditionLiteral, null);
 			expect(nodeText1.arrPositionalParams.length, 1);
-			expect(nodeText1.arrPositionalParams[0] is AstNodeZssParameterValue, true);
 			expect(nodeText1.arrPositionalParams[0].valueNode is AstNodeLiteral, true);
 
 			AstNodeLiteral nodeString1 = nodeText1.arrPositionalParams[0].valueNode as AstNodeLiteral;
@@ -184,7 +183,6 @@ Future<void> main() async {
 			expect(nodeText2.isEzflapWidget, false);
 			expect(nodeText2.conditionLiteral, "shouldRenderText2");
 			expect(nodeText2.arrPositionalParams.length, 1);
-			expect(nodeText2.arrPositionalParams[0] is AstNodeZssParameterValue, true);
 			expect(nodeText2.arrPositionalParams[0].valueNode is AstNodeLiteral, true);
 
 			AstNodeLiteral nodeString2 = nodeText2.arrPositionalParams[0].valueNode as AstNodeLiteral;

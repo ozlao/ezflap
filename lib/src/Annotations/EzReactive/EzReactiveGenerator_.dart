@@ -100,7 +100,7 @@ class EzReactiveGenerator extends GeneratorForAnnotation<EzReactive> {
 		String maybeRxWrapperGetterLogicWithoutDefaultValue = this._tryMakeRxWrapperGetterLogicWithoutDefaultValue(defaultValue, derivedName);
 
 		return """
-			RxWrapper<${type}> _\$${derivedName}RxWrapper = RxWrapper<${type}>();
+			\$RxWrapper<${type}> _\$${derivedName}RxWrapper = \$RxWrapper<${type}>();
 			${type} get ${derivedName} {
 				${maybeRxWrapperGetterLogicWithDefaultValue}
 				${maybeRxWrapperGetterLogicWithoutDefaultValue}

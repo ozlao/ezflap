@@ -12,7 +12,7 @@ import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 
 class SvcReflector extends EzServiceBase {
-	static SvcReflector i() { return Singleton.get(() => SvcReflector()); }
+	static SvcReflector i() { return $Singleton.get(() => SvcReflector()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 
@@ -216,7 +216,7 @@ class SvcReflector extends EzServiceBase {
 		}
 
 		Element? elState = elCreateState.returnType.element;
-		if (elState == null || elState.name == "EzStateBase") {
+		if (elState == null || elState.name == "\$EzStateBase") {
 			this._svcLogger.logErrorFrom(_COMPONENT, "Could not find return type element of createState method in element ${widgetClassElement}, in method ${elCreateState}. Be sure to set it to \"${widgetClassElement.name}State\"");
 			return null;
 		}
@@ -270,7 +270,7 @@ class SvcReflector extends EzServiceBase {
 
 	void _collectClassesFromLibrary(LibraryElement libraryElement) {
 		libraryElement.units.forEach((unitElement) {
-			this._hsCollectedClasses.addAll(unitElement.types.where((x) => !x.name.startsWith("_")));
+			this._hsCollectedClasses.addAll(unitElement.classes.where((x) => !x.name.startsWith("_")));
 		});
 	}
 

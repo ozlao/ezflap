@@ -32,7 +32,7 @@ enum _EzLifecycleState {
 /// code, as necessary. They begin with a "hook" prefix and so are easy to
 /// find and identify.
 @internal
-abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
+abstract class $EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	// we need this so that Obx() always have at least this one observable
 	// (because GetX throws error when Obx() wraps code that doesn't access any
 	// observable).
@@ -41,14 +41,14 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	static int _nextGuid = 1;
 
 	@internal
-	int $ezStateGuid = EzStateBase._nextGuid++;
+	int $ezStateGuid = $EzStateBase._nextGuid++;
 
 	List<VoidCallback> _arrOnDisposeCallbacks = [ ];
 	Rx<_EzLifecycleState> _ezLifecycleState = _EzLifecycleState.created.obs;
 	bool _ezLifecycleReachedReady = false;
 	TFuncCancel? _funcCancelRefreshProps;
 
-	EzStateBase() {
+	$EzStateBase() {
 		this.$initDI();
 	}
 
@@ -446,7 +446,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 				this._mapBackupModelHandlers = { };
 			}
 
-			RxWrapper<U> rxWrapper = RxWrapper<U>();
+			$RxWrapper<U> rxWrapper = $RxWrapper<U>();
 			modelHandler = $ModelHandler(
 				funcSetModelValue: (U value) { rxWrapper.setValue(value); },
 				funcGetModelValue: () => rxWrapper.getValue(),

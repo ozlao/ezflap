@@ -18,7 +18,7 @@ class _CodeSnippet {
 }
 
 class SvcZmlGenerator extends EzServiceBase {
-	static SvcZmlGenerator i() { return Singleton.get(() => SvcZmlGenerator()); }
+	static SvcZmlGenerator i() { return $Singleton.get(() => SvcZmlGenerator()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 	SvcZmlTransformer get _svcZmlTransformer => SvcZmlTransformer.i();
@@ -182,9 +182,6 @@ class SvcZmlGenerator extends EzServiceBase {
 	}
 
 	String _generateFromNodeConstructor({ required AstNodeConstructor node, required bool isInList }) {
-if (node.name == "EzRadioListTile" && node.hasFor()) {
-	int a = 2;
-}
 		_CodeSnippet codeSnippet = this._makeConstructorCode(node);
 
 		String constructorCode = codeSnippet.code;
@@ -728,7 +725,7 @@ if (node.name == "EzRadioListTile" && node.hasFor()) {
 
 		String iterValue = zFor.iterValue;
 		return """
-			...EzStateBase.\$autoMapper(${collectionExpr}, (${iterValue}, ${iterKey}, ${iterKeyOrIdx}) => ${constructorCode})
+			...\$EzStateBase.\$autoMapper(${collectionExpr}, (${iterValue}, ${iterKey}, ${iterKeyOrIdx}) => ${constructorCode})
 		""";
 	}
 
@@ -822,7 +819,7 @@ if (node.name == "EzRadioListTile" && node.hasFor()) {
 
 		String literal = this._generateFromNode(valueNode);
 		return """
-			EzStateBase.\$testAttr(${node.expectedValue}, ${literal})
+			\$EzStateBase.\$testAttr(${node.expectedValue}, ${literal})
 		""";
 	}
 

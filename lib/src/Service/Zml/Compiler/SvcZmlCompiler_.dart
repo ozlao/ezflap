@@ -32,7 +32,7 @@ class _SimpleConstructorParamInfo {
 const String _INTEROP_CONSTRUCTOR_NAME = "\$ezFlapFactory";
 
 class SvcZmlCompiler extends EzServiceBase {
-	static SvcZmlCompiler i() { return Singleton.get(() => SvcZmlCompiler()); }
+	static SvcZmlCompiler i() { return $Singleton.get(() => SvcZmlCompiler()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 	SvcReflector get _svcReflector => SvcReflector.i();

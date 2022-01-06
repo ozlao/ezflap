@@ -4,7 +4,7 @@ import 'package:ezflap/src/Utils/EzError/EzError.dart';
 import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 
 class SvcLogger extends EzServiceBase {
-	static SvcLogger i() { return Singleton.get(() => SvcLogger()); }
+	static SvcLogger i() { return $Singleton.get(() => SvcLogger()); }
 
 	List<EzError>? _arrPreviousErrors;
 	List<EzError>? _arrErrors;

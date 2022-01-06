@@ -11,7 +11,7 @@ class MustachedStringPart {
 }
 
 class SvcMustacheParser extends EzServiceBase {
-	static SvcMustacheParser i() { return Singleton.get(() => SvcMustacheParser()); }
+	static SvcMustacheParser i() { return $Singleton.get(() => SvcMustacheParser()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 

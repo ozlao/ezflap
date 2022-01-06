@@ -24,7 +24,7 @@ class EzRefGenerator extends AnnotationGeneratorBase<EzRef, EzRefData, FieldElem
 	@override
 	String? generateItemForInHost(EzRefData data) {
 		return """
-			RxWrapper<${data.typeWithoutNullability}?> _ref_${data.assignedName} = RxWrapper.withValue(null);
+			\$RxWrapper<${data.typeWithoutNullability}?> _ref_${data.assignedName} = \$RxWrapper.withValue(null);
 			${data.typeWithoutNullability}? get ${data.assignedName} {
 				return this._ref_${data.assignedName}.getValue();
 			}

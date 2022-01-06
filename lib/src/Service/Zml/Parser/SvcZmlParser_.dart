@@ -8,7 +8,7 @@ import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 import 'package:xml/xml.dart';
 
 class SvcZmlParser extends EzServiceBase {
-	static SvcZmlParser i() { return Singleton.get(() => SvcZmlParser()); }
+	static SvcZmlParser i() { return $Singleton.get(() => SvcZmlParser()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 

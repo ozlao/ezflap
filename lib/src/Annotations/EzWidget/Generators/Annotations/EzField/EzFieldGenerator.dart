@@ -24,7 +24,7 @@ class EzFieldGenerator extends AnnotationGeneratorBase<EzField, EzFieldData, Fie
 		String ifNullableBlock = this._makeIfNullableBlock(data);
 
 		return """
-			RxWrapper<${data.typeWithNullability}> _field_${data.assignedName} = RxWrapper();
+			\$RxWrapper<${data.typeWithNullability}> _field_${data.assignedName} = \$RxWrapper();
 			${data.typeWithNullability} get ${data.assignedName} {
 				${ifNullableBlock}
 				return this._field_${data.assignedName}.getValue();

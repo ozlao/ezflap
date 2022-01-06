@@ -1,34 +1,34 @@
 
 import 'package:get/get_rx/get_rx.dart';
 
-class RxWrapper<T> {
+class $RxWrapper<T> {
 	bool _isInit = false;
 	late Rx<T> _rx;
 
-	RxWrapper();
+	$RxWrapper();
 
-	factory RxWrapper.withValue(T value) {
-		RxWrapper<T> rxw = RxWrapper();
+	factory $RxWrapper.withValue(T value) {
+		$RxWrapper<T> rxw = $RxWrapper();
 		rxw._setInitialValue(value);
 		return rxw;
 	}
 
-	factory RxWrapper.withRx(Rx<T> rx) {
-		RxWrapper<T> rxw = RxWrapper();
+	factory $RxWrapper.withRx(Rx<T> rx) {
+		$RxWrapper<T> rxw = $RxWrapper();
 		rxw._rx = rx;
 		rxw._isInit = true;
 		return rxw;
 	}
 
-	static RxWrapper<U> $wrapWithRxWrapperIfRx<U>(dynamic maybeRx) {
-		if (maybeRx is RxWrapper<U>) {
+	static $RxWrapper<U> $wrapWithRxWrapperIfRx<U>(dynamic maybeRx) {
+		if (maybeRx is $RxWrapper<U>) {
 			return maybeRx;
 		}
 		else if (maybeRx is Rx<U>) {
-			return RxWrapper.withRx(maybeRx);
+			return $RxWrapper.withRx(maybeRx);
 		}
 		else {
-			throw "RxWrapper.\$wrapWithRxWrapperIfRx Expected to get an RxWrapper<${U}> or Rx<${U}>, but got something of type: ${maybeRx.runtimeType}";
+			throw "\$RxWrapper.\$wrapWithRxWrapperIfRx Expected to get an \$RxWrapper<${U}> or Rx<${U}>, but got something of type: ${maybeRx.runtimeType}";
 		}
 	}
 

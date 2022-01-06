@@ -1,10 +1,8 @@
 
-import 'package:ezflap/src/Service/Zml/Parser/Tag/Tag.dart';
 import 'package:ezflap/src/Service/Zss/Parser/Rule/StylingTag/StylingTag.dart';
 import 'package:ezflap/src/Service/Zss/Parser/SelectorPart/ZssSelectorPart.dart';
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 import 'package:meta/meta.dart';
-import 'package:xml/xml.dart';
 
 @immutable
 class ZssRule {

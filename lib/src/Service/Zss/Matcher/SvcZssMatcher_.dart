@@ -83,7 +83,7 @@ class _MatchData {
 }
 
 class SvcZssMatcher extends EzServiceBase {
-	static SvcZssMatcher i() { return Singleton.get(() => SvcZssMatcher()); }
+	static SvcZssMatcher i() { return $Singleton.get(() => SvcZssMatcher()); }
 
 	SvcLogger get _svcLogger => SvcLogger.i();
 	SvcMustacheParser get _svcMustacheParser => SvcMustacheParser.i();
