@@ -1,3 +1,6 @@
+## 0.9.0+2
+* Added documentation.
+
 ## 0.9.0+1
 * Fixed links.
 
