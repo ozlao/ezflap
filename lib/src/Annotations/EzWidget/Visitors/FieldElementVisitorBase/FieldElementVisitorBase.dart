@@ -36,6 +36,7 @@ abstract class FieldElementVisitorBase<T extends EzAnnotationBase, U extends EzF
 		this.process(element);
 	}
 
+	@override
 	T? convertFromAnnotation(DartObject objValue, ElementAnnotation elementAnnotation) {
 		DartObject? objName = objValue.getField("name");
 		String? name = objName?.toStringValue();

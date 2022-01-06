@@ -249,7 +249,7 @@ class SvcZmlParser extends EzServiceBase {
 		String collectionExpr;
 
 		const IN_LITERAL = " in ";
-		RegExp regexpIdentifier = new RegExp(r"^[a-zA-Z0-9_]+$", multiLine: false);
+		RegExp regexpIdentifier = RegExp(r"^[a-zA-Z0-9_]+$", multiLine: false);
 
 		while (true) {
 			int posIn = zForExpr.indexOf(IN_LITERAL);

@@ -48,7 +48,7 @@ class SvcZssParser extends EzServiceBase {
 
 		List<ZssRule> arrRules = [ ];
 		this._parseZssWrappers(xDoc.rootElement.children, arrRules);
-		ZssRuleSet ruleSet = new ZssRuleSet(arrRules);
+		ZssRuleSet ruleSet = ZssRuleSet(arrRules);
 
 		return ruleSet;
 	}
@@ -116,11 +116,11 @@ class SvcZssParser extends EzServiceBase {
 			return;
 		}
 
-		Iterable<XmlElement> iterElements = xRule.children.where((x) => x is XmlElement).asIterableOf<XmlElement>();
+		Iterable<XmlElement> iterElements = xRule.children.whereType<XmlElement>().asIterableOf<XmlElement>();
 		Iterable<XmlElement> iterNamedStylingElements = iterElements.where((x) => x.name.local != "RULE");
 		Map<String, StylingTag> mapNamedStylingTags = this._processStylingElements(iterNamedStylingElements);
 
-		ZssRule rule = new ZssRule(
+		ZssRule rule = ZssRule(
 			arrSelectorParts: arrSelectorParts,
 			mapNamedStylingTags: mapNamedStylingTags,
 			originalSelector: selector,
@@ -176,17 +176,17 @@ class SvcZssParser extends EzServiceBase {
 	}
 
 	ZssSelectorPart? _parseSelectorPart(String selectorPart) {
-		RegExp regexp = new RegExp(
+		RegExp regexp = RegExp(
 			r"""(^[a-zA-Z0-9]+-?)|(\.[a-zA-Z0-9]+)|(\[[a-zA-Z0-9]+(=.+?)?\])|(\[[a-zA-Z0-9]+(=".+?")?\])|(\[[a-zA-Z0-9]+(='.+?')?\])""",
 			caseSensitive: false,
 			multiLine: false,
 		);
 
-		ZssSelectorPart part = new ZssSelectorPart();
+		ZssSelectorPart part = ZssSelectorPart();
 		Iterable<RegExpMatch> matches = regexp.allMatches(selectorPart);
 		for (RegExpMatch match in matches) {
 			String? item = match.firstGroupMatch();
-			if (item == null || item.length == 0) {
+			if (item == null || item.isEmpty) {
 				continue;
 			}
 
@@ -230,9 +230,7 @@ class SvcZssParser extends EzServiceBase {
 		if (text[0] != ".") {
 			return;
 		}
-		if (part.setClasses == null) {
-			part.setClasses = new Set<String>();
-		}
+		part.setClasses ??= Set<String>();
 		part.setClasses!.add(text.substring(1));
 	}
 
@@ -240,9 +238,7 @@ class SvcZssParser extends EzServiceBase {
 		if (text[0] != "[") {
 			return;
 		}
-		if (part.mapAttrConditions == null) {
-			part.mapAttrConditions = Map<String, ZssAttrCondition?>();
-		}
+		part.mapAttrConditions ??= Map<String, ZssAttrCondition?>();
 		int posEqual = text.indexOf("=");
 		if (posEqual == -1) {
 			// no equality sign. we just need to confirm existence

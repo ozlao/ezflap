@@ -107,7 +107,7 @@ class TemplateProcessor {
 	Map<String, List<String>> _mapCachedZssesInPaths = { };
 	List<String> _getZssesInPath(String path) {
 		if (!this._mapCachedZssesInPaths.containsKey(path)) {
-			Directory dir = new Directory(path);
+			Directory dir = Directory(path);
 			this._mapCachedZssesInPaths[path] = dir
 				.listSync()
 				.map((x) => x.path)

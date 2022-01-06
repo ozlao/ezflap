@@ -20,6 +20,7 @@ typedef TFuncEzStatefulWidgetFactory = EzStatefulWidgetBase Function(BuildContex
 /// of two classes.
 /// The class that, for a native Flutter widget would extend [StatefulWidget] -
 /// needs to extend [EzStatefulWidgetBase] instead.
+// TODO: add key support to ezFlap widgets (by properly passing to the constructor)
 abstract class EzStatefulWidgetBase extends StatefulWidget {
 	$IWidgetWrapperForWidget? _widgetWrapper;
 
@@ -39,6 +40,8 @@ abstract class EzStatefulWidgetBase extends StatefulWidget {
 
 	@internal
 	int $ezWidgetGuid = EzStatefulWidgetBase._nextGuid++;
+
+  EzStatefulWidgetBase({Key? key}) : super(key: key);
 
 	@internal
 	bool $hasWidgetWrapper() => this._widgetWrapper != null;

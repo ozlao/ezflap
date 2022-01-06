@@ -48,6 +48,7 @@ class _WidgetMockStatefulWidget extends EzStatefulWidgetBase {
 	}
 
 	@override
+	// ignore: no_logic_in_create_state
 	MockWidgetStateBase createState() {
 		MockWidgetStateBase state = this._funcCreateMockWidgetState();
 		this.funcOnCreatedState(state);

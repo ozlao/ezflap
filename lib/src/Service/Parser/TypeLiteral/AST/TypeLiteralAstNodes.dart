@@ -21,6 +21,7 @@ class TypeLiteralAstNodeType extends TypeLiteralAstNodeBase {
 		return s;
 	}
 
+	@override
 	String toString() {
 		String fullName = this.getFullName();
 		return "TypeLiteralAstNodeType: ${fullName}";

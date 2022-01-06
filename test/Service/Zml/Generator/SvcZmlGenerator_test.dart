@@ -676,7 +676,7 @@ void main() async {
 					return (
 						this._ezState.\$instantiateOrMock("ZmlGeneratorTestSlotsSingleChildExtendEzStatefulWidget", () => ZmlGeneratorTestSlotsSingleChildExtendEzStatefulWidget())
 							..\$initProps({
-								\"child\": this._ezState.widget.\$getSlotProviderWidgets(null, { }).first
+								"child": this._ezState.widget.\$getSlotProviderWidgets(null, { }).first
 							})
 					);
 				""",

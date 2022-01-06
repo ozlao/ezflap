@@ -16,6 +16,8 @@ class EzEmitData extends EzFieldDataBase {
 class EzEmitVisitor extends FieldElementVisitorBase<EzEmit, EzEmitData> {
 	static const String _COMPONENT = "EzEmitVisitor";
 
+	@override
+	// ignore: avoid_renaming_method_parameters
 	EzEmitData? makeData(EzEmit ezField, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String type = this.getType(element);

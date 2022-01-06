@@ -14,6 +14,8 @@ class EzRouteParamData extends EzFieldDataBase {
 class EzRouteParamVisitor extends FieldElementVisitorBase<EzRouteParam, EzRouteParamData> {
 	static const String _COMPONENT = "EzRouteParamVisitor";
 
+	@override
+	// ignore: avoid_renaming_method_parameters
 	EzRouteParamData? makeData(EzRouteParam ezField, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String type = this.getType(element);

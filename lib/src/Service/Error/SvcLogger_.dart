@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_print
+
 import 'package:ezflap/src/Service/EzServiceBase.dart';
 import 'package:ezflap/src/Utils/EzError/EzError.dart';
 import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
@@ -51,17 +53,23 @@ class SvcLogger extends EzServiceBase {
 
 	void printPendingLoggedErrorsOnException() {
 		if (this._arrErrors != null) {
-			this._arrErrors!.forEach((x) => this.printError(x));
+			this.printErrors(this._arrErrors!);
 		}
 	}
 
 	void printLoggedErrorsIfNeeded() {
 		if (this.hasLoggedErrors()) {
-			this.getLoggedErrors().forEach((x) => this.printError(x));
+			this.printErrors(this.getLoggedErrors());
 		}
 	}
 
 	void printError(EzError error) {
 		print("Error: ${error}");
+	}
+
+	void printErrors(Iterable<EzError> iter) {
+		for (var x in iter) {
+			this.printError(x);
+		}
 	}
 }

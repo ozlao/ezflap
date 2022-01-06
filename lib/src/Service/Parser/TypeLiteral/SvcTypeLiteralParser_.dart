@@ -1,6 +1,5 @@
 
 import 'package:analyzer/dart/element/type.dart';
-import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/EzServiceBase.dart';
 import 'package:ezflap/src/Service/Parser/TypeLiteral/AST/TypeLiteralAstNodes.dart';
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
@@ -8,8 +7,6 @@ import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 
 class SvcTypeLiteralParser extends EzServiceBase {
 	static SvcTypeLiteralParser i() { return $Singleton.get(() => SvcTypeLiteralParser()); }
-
-	SvcLogger get _svcLogger => SvcLogger.i();
 
 	static const String _COMPONENT = "SvcTypeLiteralParser";
 
@@ -83,7 +80,7 @@ class SvcTypeLiteralParser extends EzServiceBase {
 	}
 
 	bool _hasGenerics(String typeLiteral) {
-		return (typeLiteral.indexOf("<") != -1);
+		return typeLiteral.contains("<");
 	}
 
 	String _getTypeName(String typeLiteral) {

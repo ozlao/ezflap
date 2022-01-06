@@ -23,6 +23,7 @@ class EzRefsVisitor extends FieldElementVisitorBase<EzRefs, EzRefsData> {
 	SvcTypeLiteralParser get _svcTypeLiteralParser { return SvcTypeLiteralParser.i(); }
 	
 	@override
+	// ignore: avoid_renaming_method_parameters
 	EzRefsData? makeData(EzRefs ezRefs, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String typeWithNullability = this.getType(element);

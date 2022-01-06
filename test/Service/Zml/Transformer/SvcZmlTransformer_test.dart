@@ -122,7 +122,8 @@ void main() {
 
 		test("Transform - test TextTransformer", () {
 			Map<String, String> map = { };
-			void Function(String, String) add = (source, target) => map[source] = target;
+			//void Function(String, String) add = (source, target) => map[source] = target;
+			void add(String source, String target) => map[source] = target;
 
 			add("hello world", "hello world");
 			add("hello  world", "hello world");

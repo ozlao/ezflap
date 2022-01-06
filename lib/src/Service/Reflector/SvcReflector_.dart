@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_print, avoid_function_literals_in_foreach_calls
+
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
@@ -162,7 +164,7 @@ class SvcReflector extends EzServiceBase {
 			constructorElement = classDescriptor.classElement.constructors.firstOrNull((x) => x.name == constructorName);
 		}
 
-		ConstructorDescriptor? constructorDescriptor = null;
+		ConstructorDescriptor? constructorDescriptor;
 		if (constructorElement != null) {
 			constructorDescriptor = ConstructorDescriptor(
 				name: constructorName,
@@ -180,7 +182,7 @@ class SvcReflector extends EzServiceBase {
 			return this._mapClasses[className];
 		}
 
-		ClassDescriptor? classDescriptor = null;
+		ClassDescriptor? classDescriptor;
 		ClassElement? classElement = this._mapCollectedClasses[className];
 		if (classElement != null) {
 			bool isEzflapWidget = this._isClassEzflapWidget(classElement);
@@ -269,9 +271,9 @@ class SvcReflector extends EzServiceBase {
 	}
 
 	void _collectClassesFromLibrary(LibraryElement libraryElement) {
-		libraryElement.units.forEach((unitElement) {
+		for (var unitElement in libraryElement.units) {
 			this._hsCollectedClasses.addAll(unitElement.classes.where((x) => !x.name.startsWith("_")));
-		});
+		}
 	}
 
 	void _collectLibrariesFromLibrary(LibraryElement libraryElement) {

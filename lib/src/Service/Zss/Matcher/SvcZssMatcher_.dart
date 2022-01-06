@@ -1,5 +1,4 @@
 
-import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/EzServiceBase.dart';
 import 'package:ezflap/src/Service/Parser/Mustache/SvcMustacheParser_.dart';
 import 'package:ezflap/src/Service/Zml/Parser/Tag/Tag.dart';
@@ -85,7 +84,6 @@ class _MatchData {
 class SvcZssMatcher extends EzServiceBase {
 	static SvcZssMatcher i() { return $Singleton.get(() => SvcZssMatcher()); }
 
-	SvcLogger get _svcLogger => SvcLogger.i();
 	SvcMustacheParser get _svcMustacheParser => SvcMustacheParser.i();
 
 	// TODO: discard rules that are 100% overshadowed by more specific rules
@@ -343,7 +341,7 @@ class SvcZssMatcher extends EzServiceBase {
 		}
 
 		// compare hardcoded
-		Set<String>? setRemainingSelectorClasses = null;
+		Set<String>? setRemainingSelectorClasses;
 		setRemainingSelectorClasses = this._getSelectorPartClassesThatAreMissingInTagHardcodedClasses(hardcodedClasses, selectorPart.setClasses!);
 		if (setRemainingSelectorClasses.isEmpty) {
 			return _MatchData.certainMatch();
@@ -364,7 +362,7 @@ class SvcZssMatcher extends EzServiceBase {
 	}
 
 	Set<String> _getSelectorPartClassesThatAreMissingInTagHardcodedClasses(String? tagClasses, Set<String> setSelectorClasses) {
-		if (setSelectorClasses.length == 0) {
+		if (setSelectorClasses.isEmpty) {
 			return { };
 		}
 

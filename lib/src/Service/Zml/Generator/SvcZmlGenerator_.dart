@@ -1,4 +1,6 @@
 
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:ezflap/src/Annotations/EzWidget/Reflectors/EzflapWidgetsReflector.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/FieldElementVisitorBase/FieldElementVisitorBase.dart';
 import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
@@ -673,13 +675,6 @@ class SvcZmlGenerator extends EzServiceBase {
 		else {
 			return "(${node.conditionLiteral}) ? ";
 		}
-	}
-
-	String _makeConditionClauseTernary(AstNodeConstructor node) {
-		if (node.conditionLiteral == null) {
-			return "";
-		}
-		return "(${node.conditionLiteral})";
 	}
 
 	String _wrapWithVisibilityIfNeeded(AstNodeConstructor node, String constructorCode) {

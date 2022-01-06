@@ -1,5 +1,4 @@
 
-import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/EzServiceBase.dart';
 import 'package:ezflap/src/Utils/Singleton/Singleton.dart';
 
@@ -12,8 +11,6 @@ class MustachedStringPart {
 
 class SvcMustacheParser extends EzServiceBase {
 	static SvcMustacheParser i() { return $Singleton.get(() => SvcMustacheParser()); }
-
-	SvcLogger get _svcLogger => SvcLogger.i();
 
 	static const String _COMPONENT = "SvcMustacheParser";
 

@@ -16,6 +16,7 @@ class EzModelVisitor extends FieldElementVisitorBase<EzModel, EzModelData> {
 	static const String _COMPONENT = "EzModelVisitor";
 
 	@override
+	// ignore: avoid_renaming_method_parameters
 	EzModelData? makeData(EzModel ezModel, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String type = this.getType(element);
@@ -44,6 +45,7 @@ class EzModelVisitor extends FieldElementVisitorBase<EzModel, EzModelData> {
 		return EzModel(name);
 	}
 
+	@override
 	EzModel? convertFromAnnotation(DartObject objValue, ElementAnnotation elementAnnotation) {
 		DartObject? objName = objValue.getField("name");
 		String? name = objName?.toStringValue();

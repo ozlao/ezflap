@@ -73,7 +73,9 @@ class GenFromJsonMap with EzJsonMixin {
 			else if (node.isRxSet()) {
 				return "RxSet(${valueIdentifier}.toSet())";
 			}
-			else assert(false);
+			else {
+				assert(false);
+			}
 		}
 
 
@@ -104,7 +106,9 @@ class GenFromJsonMap with EzJsonMixin {
 			else if (node.isRxMap()) {
 				return "RxMap(${valueIdentifier})";
 			}
-			else assert(false);
+			else {
+				assert(false);
+			}
 		}
 
 		assert(node.arrGenericNodes.length == 2);

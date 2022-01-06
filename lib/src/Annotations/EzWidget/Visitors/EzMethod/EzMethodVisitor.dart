@@ -14,6 +14,8 @@ class EzMethodData extends EzMethodDataBase {
 class EzMethodVisitor extends MethodElementVisitorBase<EzMethod, EzMethodData> {
 	static const String _COMPONENT = "EzMethodVisitor";
 
+	@override
+	// ignore: avoid_renaming_method_parameters
 	EzMethodData? makeData(EzMethod ezField, MethodElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String methodName = this.getMethodName(element);
 		String signature = this.getSignature(element);

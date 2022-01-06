@@ -5,13 +5,13 @@ import 'package:ezflap/src/Utils/Types/Types.dart';
 
 /// Timer-related utilities.
 class Tick {
-	static Duration _zeroDuration = new Duration(seconds: 0);
+	static const Duration _ZERO_DURATION = Duration(seconds: 0);
 
 	/// Run [func] in the next tick (i.e. in zero milliseconds).
 	/// Returns a cancellation callback to cancel the pending invocation of
 	/// [func].
 	static TFuncCancel nextTick(Function() func) {
-		return Tick._makeTimer(Tick._zeroDuration, func);
+		return Tick._makeTimer(Tick._ZERO_DURATION, func);
 	}
 
 	/// Run [func] in [ms] milliseconds. Returns a cancellation callback.

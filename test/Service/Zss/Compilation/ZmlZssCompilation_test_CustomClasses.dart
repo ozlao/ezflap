@@ -10,6 +10,7 @@ enum EMyEnum {
 	enumValue3,
 }
 
+// ignore: unused_element
 class _SomeOtherClass<T> {
 
 }

@@ -25,6 +25,7 @@ class EzWatchVisitor extends MethodElementVisitorBase<EzWatch, EzWatchData> {
 		this.process(element);
 	}
 	
+	@override
 	EzWatch? convertFromAnnotation(DartObject objValue, ElementAnnotation elementAnnotation) {
 		DartObject? objWatchedExpression = objValue.getField("watchedExpression");
 		String? watchedExpression = objWatchedExpression?.toStringValue();
@@ -36,6 +37,8 @@ class EzWatchVisitor extends MethodElementVisitorBase<EzWatch, EzWatchData> {
 		return EzWatch(watchedExpression);
 	}
 
+	@override
+	// ignore: avoid_renaming_method_parameters
 	EzWatchData? makeData(EzWatch ezField, MethodElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String methodName = this.getMethodName(element);
 		String signature = this.getSignature(element);

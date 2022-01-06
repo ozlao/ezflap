@@ -4,13 +4,10 @@ import 'package:ezflap/src/Annotations/EzWithDI/EzDI/EzDI.dart';
 import 'package:ezflap/src/Annotations/EzWithDI/EzDIProvider/EzDIProvider.dart';
 import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
 import 'package:ezflap/src/Annotations/Utils/Visitors/GenericFieldVisitor/GenericFieldVisitor.dart';
-import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 
 // TODO: move this stuff to a service
 class EzWithDIGenerator {
 	static const String _COMPONENT = "EzWithDIGenerator";
-
-	SvcLogger get _svcLogger => SvcLogger.i();
 
 	static String generateForEzDIs(Element element, { required bool supportOverrides }) {
 		GenericFieldVisitor visitor = GenericFieldVisitor((x) => AnnotationUtils.hasAnnotation<EzDI>(x.element));

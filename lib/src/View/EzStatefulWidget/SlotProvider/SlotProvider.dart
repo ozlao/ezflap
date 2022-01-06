@@ -11,6 +11,7 @@ class $SlotProviderScope {
 
 	$SlotProviderScope(this.mapParams);
 
+	@override
 	dynamic noSuchMethod(Invocation invocation) {
 		String? key = invocation.memberName.getName();
 		if (key == null) {

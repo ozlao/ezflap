@@ -6,14 +6,14 @@ import 'package:meta/meta.dart';
 class ZssRuleSet {
 	final List<ZssRule> arrRules;
 
-	ZssRuleSet(this.arrRules);
+	const ZssRuleSet(this.arrRules);
 
 	void addRulesFromRuleSet(ZssRuleSet other) {
 		this.arrRules.addAll(other.arrRules);
 	}
 
 	ZssRuleSet concat(ZssRuleSet? other) {
-		ZssRuleSet newRuleSet = new ZssRuleSet(this.arrRules.toList());
+		ZssRuleSet newRuleSet = ZssRuleSet(this.arrRules.toList());
 		if (other != null) {
 			newRuleSet.addRulesFromRuleSet(other);
 		}

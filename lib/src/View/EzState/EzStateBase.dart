@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:ezflap/src/Utils/Rx/RxWrapper/RxWrapper.dart';
 import 'package:ezflap/src/Utils/Tick/Tick.dart';
 import 'package:ezflap/src/Utils/Types/Types.dart';
@@ -386,7 +388,7 @@ abstract class $EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	@protected
 	@nonVirtual
 	@internal
-	T $getRouteParam<T>(String key) {
+	U $getRouteParam<U>(String key) {
 		if (this.widget.$hasWidgetWrapper()) {
 			return this.widget.$getRouteParamFromWidgetWrapper(key);
 		}
@@ -402,13 +404,13 @@ abstract class $EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 		}
 
 		Map<String, dynamic> map = args;
-		return map[key] as T;
+		return map[key] as U;
 	}
 
 	@protected
 	@nonVirtual
 	@internal
-	T $tryGetRouteParam<T>(String key, T defaultValue) {
+	U $tryGetRouteParam<U>(String key, U defaultValue) {
 		if (this.widget.$hasWidgetWrapper()) {
 			return this.widget.$getRouteParamFromWidgetWrapper(key);
 		}
@@ -428,7 +430,7 @@ abstract class $EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 			return defaultValue;
 		}
 
-		return map[key] as T;
+		return map[key] as U;
 	}
 
 	Map<String, $ModelHandler>? _mapBackupModelHandlers;

@@ -140,7 +140,9 @@ void testParameter(String? constructorName, dynamic parameterNameOrIdx, { requir
 		parameterDescriptor = svcReflector.describeOrderedParameter(className, constructorName, parameterNameOrIdx);
 		expectedName = null;
 	}
-	else assert(false);
+	else {
+		assert(false);
+	}
 
 	expect(parameterDescriptor != null, true);
 	if (expectedName != null) { // we need this [if] because positional parameters have names too...

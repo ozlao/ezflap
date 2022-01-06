@@ -27,7 +27,7 @@ class GenToJsonMap with EzJsonMixin {
 				TypeLiteralAstNodeType node = data.typeNode;
 				String processedValue = this._makeProcessValueCode(valueIdentifier, node);
 				return """
-					map[\"${data.derivedName}\"] = ${processedValue};
+					map["${data.derivedName}"] = ${processedValue};
 				""";
 			})
 			.toList()
@@ -78,7 +78,9 @@ class GenToJsonMap with EzJsonMixin {
 				// treat the value as a List and return it directly
 				return "${valueIdentifier}.toList()";
 			}
-			else assert(false);
+			else {
+				assert(false);
+			}
 		}
 
 
@@ -111,7 +113,9 @@ class GenToJsonMap with EzJsonMixin {
 				// treat the value as a Map and return it directly
 				return valueIdentifier;
 			}
-			else assert(false);
+			else {
+				assert(false);
+			}
 		}
 
 		assert(node.arrGenericNodes.length == 2);
@@ -122,7 +126,7 @@ class GenToJsonMap with EzJsonMixin {
 		String nullableChar = (node.isNullable ? "?" : "");
 		if (node.isRx()) {
 			//effectiveValueIdentifier = "${valueIdentifier}${nullableChar}.value";
-			effectiveValueIdentifier = "${valueIdentifier}";
+			effectiveValueIdentifier = valueIdentifier;
 			nullableChar = (mapValueType.isNullable ? "?" : "");
 		}
 		String generatedMap = """

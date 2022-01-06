@@ -1,4 +1,5 @@
 
+// ignore: library_prefixes
 import 'dart:math' as Math;
 
 /// Generic utilities.

@@ -14,6 +14,7 @@ class EzOptionalModelData extends EzFieldDataBase {
 
 class EzOptionalModelVisitor extends FieldElementVisitorBase<EzOptionalModel, EzOptionalModelData> {
 	@override
+	// ignore: avoid_renaming_method_parameters
 	EzOptionalModelData? makeData(EzOptionalModel ezModel, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String type = this.getType(element);
@@ -38,6 +39,7 @@ class EzOptionalModelVisitor extends FieldElementVisitorBase<EzOptionalModel, Ez
 		return EzOptionalModel(name);
 	}
 
+	@override
 	EzOptionalModel? convertFromAnnotation(DartObject objValue, ElementAnnotation elementAnnotation) {
 		DartObject? objName = objValue.getField("name");
 		String? name = objName?.toStringValue();

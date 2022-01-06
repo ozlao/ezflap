@@ -30,7 +30,7 @@ class ZssSelectorPart {
 
 	ZssSelectorPart mergeFromIntoNew(ZssSelectorPart other) {
 		assert(this.tagName == null || other.tagName == null || this.tagName == other.tagName, "extender selector conflicts with parent selector");
-		ZssSelectorPart mergedSelectorPart = new ZssSelectorPart();
+		ZssSelectorPart mergedSelectorPart = ZssSelectorPart();
 		mergedSelectorPart.tagName = this.tagName ?? other.tagName;
 		mergedSelectorPart.setClasses = { ...(this.setClasses ?? { }), ...(other.setClasses ?? { }) };
 		mergedSelectorPart.mapAttrConditions = { ...(this.mapAttrConditions ?? { }), ...(other.mapAttrConditions ?? { }) };

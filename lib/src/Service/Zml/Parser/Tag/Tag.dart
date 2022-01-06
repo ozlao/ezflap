@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:ezflap/src/Service/Zss/Matcher/ParameterApplicableZss/ParameterApplicableZss.dart';
 
 class ZFor {
@@ -32,29 +34,29 @@ class Tag {
 	final String name;
 	final bool isNamedChildTag;
 
-	String? zCustomConstructorName = null;
-	String? zKey = null;
-	String? stringAttrClass = null;
-	String? attrClass = null;
-	String? zIf = null;
-	String? zShow = null;
-	ZFor? zFor = null;
-	String? zRef = null;
-	String? zRefs = null;
-	String? zRefsKey = null;
-	String? zBuild = null;
-	String? zBuilder = null;
-	String? zName = null;
+	String? zCustomConstructorName;
+	String? zKey;
+	String? stringAttrClass;
+	String? attrClass;
+	String? zIf;
+	String? zShow;
+	ZFor? zFor;
+	String? zRef;
+	String? zRefs;
+	String? zRefsKey;
+	String? zBuild;
+	String? zBuilder;
+	String? zName;
 
 	/// used with <ZSlotProvider> to designate the name of the scope (that is
 	/// passed from the consumer)
-	String? zScope = null;
+	String? zScope;
 
 	/// used with z-model. optional. only needed in rare cases when Dart's
 	/// Analyzer fails to detect the @EzModel (or @EzOptionalModel) type. this
 	/// seems to happen in some (but not all) cases when passing [z-model] to
 	/// an inheriting widget, where the @EzModel is defined on its base class.
-	String? zModelTypeLiteral = null;
+	String? zModelTypeLiteral;
 
 	String text = "";
 	String textWithoutXmlComments = "";

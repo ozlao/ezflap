@@ -32,6 +32,7 @@ class EzComputedVisitor extends EzAnnotationVisitor<EzComputed, EzComputedData, 
 		this.process(element);
 	}
 	
+	@override
 	EzComputed? convertFromAnnotation(DartObject objValue, ElementAnnotation elementAnnotation) {
 		DartObject? objName = objValue.getField("name");
 		String? name = objName?.toStringValue();
@@ -43,6 +44,8 @@ class EzComputedVisitor extends EzAnnotationVisitor<EzComputed, EzComputedData, 
 		return EzComputed(name);
 	}
 	
+	@override
+	// ignore: avoid_renaming_method_parameters
 	EzComputedData? makeData(EzComputed ezField, MethodElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String methodName = this._getMethodName(element);
 		String signature = this._getSignature(element);

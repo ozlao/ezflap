@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_print
+
 import 'package:build/build.dart';
 import 'package:ezflap/src/Annotations/EzJson/EzJsonGenerator_.dart';
 import 'package:ezflap/src/Annotations/EzReactive/EzReactiveGenerator_.dart';

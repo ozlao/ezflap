@@ -6,7 +6,7 @@ class ZssAttrCondition { // currently supporting only presence and equality
 	final String name;
 	final String value;
 
-	ZssAttrCondition(this.name, this.value);
+	const ZssAttrCondition(this.name, this.value);
 
 	/// returns true if the entire content is in quotes. e.g.:
 	///   [hello=world] --> returns false.

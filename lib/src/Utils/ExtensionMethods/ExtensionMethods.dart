@@ -138,7 +138,7 @@ extension StringUtilsExtension on String {
 
 	/// Returns the last character of the string, or null if empty.
 	String? lastChar() {
-		if (this.length == 0) {
+		if (this.isEmpty) {
 			return null;
 		}
 		return this[this.length - 1];
@@ -341,7 +341,9 @@ extension IterableUtils<T> on Iterable<T> {
 
 	U reduceTo<U>(TFuncReducer<T, U> funcReducer, U defaultValue) {
 		U reduced = defaultValue;
-		this.forEach((T x) => reduced = funcReducer(reduced, x));
+		for (T x in this) {
+			reduced = funcReducer(reduced, x);
+		}
 		return reduced;
 	}
 
@@ -357,7 +359,7 @@ extension IterableUtils<T> on Iterable<T> {
 	}
 
 	double average<U extends num>([ TFuncMapper<T, U>? funcMapper ]) {
-		if (this.length == 0) {
+		if (this.isEmpty) {
 			return 0;
 		}
 
@@ -370,7 +372,7 @@ extension IterableUtils<T> on Iterable<T> {
 	}
 
 	U? max<U extends num>(TFuncMapper<T, U> funcMapper) {
-		U? curMax = null;
+		U? curMax;
 		for (T? item in this) {
 			if (item == null) {
 				continue;
@@ -391,7 +393,7 @@ extension IterableUtils<T> on Iterable<T> {
 	}
 
 	U? min<U extends num>(TFuncMapper<T, U> funcMapper) {
-		U? curMin = null;
+		U? curMin;
 		for (T? item in this) {
 			if (item == null) {
 				continue;
@@ -411,14 +413,11 @@ extension IterableUtils<T> on Iterable<T> {
 		return curMin;
 	}
 
-	Map<K, U> toMap<K, U>({ required K funcKey(T item)?, required U funcValue(T item)? }) {
+	Map<K, U> toMap<K, U>({ required K Function(T item)? funcKey, required U Function(T item)? funcValue }) {
 		assert(funcKey != null);
 		assert(funcValue != null);
 
-		Map<K, U> map = Map<K, U>.fromIterable(this,
-			key: (item) => funcKey!(item),
-			value: (item) => funcValue!(item),
-		);
+		Map<K, U> map = { for (var item in this) funcKey!(item) : funcValue!(item) };
 		return map;
 	}
 

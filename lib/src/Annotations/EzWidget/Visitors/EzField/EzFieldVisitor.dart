@@ -13,6 +13,7 @@ class EzFieldData extends EzFieldDataBase {
 
 class EzFieldVisitor extends FieldElementVisitorBase<EzField, EzFieldData> {
 	@override
+	// ignore: avoid_renaming_method_parameters
 	EzFieldData? makeData(EzField ezField, FieldElement element, DartObject objValue, ElementAnnotation elementAnnotation) {
 		String derivedName = this.getDerivedName(element);
 		String type = this.getType(element);

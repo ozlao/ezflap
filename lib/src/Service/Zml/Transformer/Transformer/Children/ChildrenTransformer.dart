@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:ezflap/src/Service/Zml/Parser/Tag/Tag.dart';
 import 'package:ezflap/src/Service/Zml/Transformer/Transformer/TransformerBase.dart';
 
@@ -95,7 +97,7 @@ class ChildrenTransformer extends TransformerBase {
 		List<Tag> arrEffectiveUnnamedChildren = tag.arrUnnamedChildren.where((x) => !x.isTypeSlotProvider()).toList();
 		return arrEffectiveUnnamedChildren;
 	}
-	
+
 	bool _supportsChild(Tag tag) {
 		return this.hasParameter(tag, "child");
 	}

@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_print
+
 import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/Zml/AST/AstNodes.dart';
 import 'package:ezflap/src/Service/Zml/Compiler/SvcZmlCompiler_.dart';

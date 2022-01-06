@@ -133,7 +133,7 @@ class EzWidgetGeneratorImpl {
 	SplitCode _getEzDICode() {
 		return SplitCode(arrInState: [ EzWithDIGenerator.generateForEzDIs(this._element, supportOverrides: true) ]);
 	}
-	
+
 	SplitCode _getEzDIProvidersCode() {
 		return SplitCode(arrInState: [ EzWithDIGenerator.generateForEzDIProviders(this._element) ]);
 	}
@@ -198,7 +198,7 @@ class EzWidgetGeneratorImpl {
 	void _prepareInitialBuilderCodeIfNeeded(AnnotationsSummary annotationsSummary) {
 		AstNodeWrapper? astNode = this._templateProcessor.processInitial();
 		if (astNode == null) {
-			return null;
+			return;
 		}
 		this._initialBuilder = this._svcZmlGenerator.generateBuilderContent(astNode, annotationsSummary);
 	}
