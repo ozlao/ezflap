@@ -37,5 +37,11 @@ export 'package:ezflap/src/Service/DependencyInjector/ProviderBase.dart';
 export "package:ezflap/src/Service/DependencyInjector/ResolverBase.dart";
 export 'package:ezflap/src/Service/EzflapTester/Wrapper/TestWrapperMixin.dart';
 export 'package:ezflap/src/Service/EzflapTester/Wrapper/WidgetWrapper.dart';
-export 'package:ezflap/src/Service/EzflapTester/WidgetTesterExtension/WidgetTesterExtension.dart';
 export 'package:meta/meta.dart';
+
+// this makes pub.dev complain that this and dependent packages are not suitable
+// for Web, because of the implicit dependency on dart:io (which comes from
+// package:flutter_test/src/platform.dart, which is an indirect dependent of
+// package:flutter_test/flutter_test.dart). so, for now - this file will need
+// to be imported into tests explicitly.
+//export 'package:ezflap/src/Service/EzflapTester/WidgetTesterExtension/WidgetTesterExtension.dart';

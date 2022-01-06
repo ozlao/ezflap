@@ -1,5 +1,5 @@
 name: ezflap
-description: Reactive Markup for Flutter.
+description: Reactive Markup for Flutter. Allows to use a simple XML-based markup to easily create reactive UX.
 
 #publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

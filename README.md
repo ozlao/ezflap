@@ -16,16 +16,16 @@ With ezFlap, you can:
 
 ezFlap is inspired by [Vuejs](https://vuejs.org/) and a little bit by [Angular](https://angular.io/).
 
-Read the full documentation at [https://www.ezflap.io/docs](https://www.ezflap.io/docs).
+Read the full documentation at [ezflap.io](https://www.ezflap.io/essentials/introduction/introduction.html).
 
 ## What ezFlap Looks Like
 This is what an ezFlap version of the Flutter bootstrap project may look like:
 
 ### MyApp
-![MyApp.png](./doc-assets/MyApp.png)
+![MyApp.png](https://www.ezflap.io/assets/external/MyApp.png)
 
 ### MyHomePage
-![MyHomePage.png](./doc-assets/MyHomePage.png)
+![MyHomePage.png](https://www.ezflap.io/assets/external/MyHomePage.png)
 
 
 ## Getting Started
@@ -49,7 +49,8 @@ Then, it generates the Dart code that will:
  * Perform additional logic expressed in the ZML and ZSS of the widget.
 
 ### Where to Go From Here
-Follow the [Installation instructions](https://www.ezflap.io/install), and then read the full [documentation](https://www.ezflap.io/docs).
+Follow the [Installation instructions](https://www.ezflap.io/essentials/installation/installation.html), and then read
+the full [documentation](https://www.ezflap.io/essentials/introduction/introduction.html).
 
 OR choose from the following resources:
  * [ezFlap pub.dev package](https://pub.dev/packages/ezflap)
