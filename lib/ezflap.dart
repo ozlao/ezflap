@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_export_of_internal_element
+
 library ezflap;
 
 export 'package:ezflap/src/Annotations/Common/EzValue/EzValue.dart';
@@ -15,7 +17,6 @@ export 'package:ezflap/src/Annotations/EzWidget/EzOptionalModel/EzOptionalModel.
 export 'package:ezflap/src/Annotations/EzWidget/EzRouteParam/EzRouteParam.dart';
 export 'package:ezflap/src/Annotations/EzReactive/EzReactive.dart';
 export 'package:ezflap/src/Annotations/EzJson/EzJson.dart';
-export 'package:ezflap/src/Annotations/EzWithDI/EzWithDI.dart';
 export 'package:ezflap/src/Annotations/EzWithDI/EzDI/EzDI.dart';
 export 'package:ezflap/src/Annotations/EzWithDI/EzDIProvider/EzDIProvider.dart';
 export 'package:ezflap/src/Annotations/EzService/EzService.dart';

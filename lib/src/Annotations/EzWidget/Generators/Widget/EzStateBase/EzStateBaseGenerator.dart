@@ -113,12 +113,20 @@ class EzStateBaseGenerator extends WidgetGeneratorBase {
 			}
 		}
 
-		return """
+		String s = """
 			_EzStateBase() {
 				${maybeSetBuildHostCode}
 				${maybeCallSuperSetBuildHostCode}
 			}
 		""";
+
+		if (maybeSetBuildHostCode.isEmpty && maybeCallSuperSetBuildHostCode.isEmpty) {
+			// to avoid linter warning: "Use `;` instead of `{}` for empty
+			// constructor bodies. (empty_constructor_bodies at ...)"
+			s = "_EzStateBase();";
+		}
+
+		return s;
 	}
 
 	String _makeSetBuildHostFunction() {

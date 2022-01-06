@@ -6,9 +6,23 @@ import 'package:ezflap/src/View/EzState/ModelHandler/ModelHandler.dart';
 import 'package:ezflap/src/View/EzStatefulWidget/EzStatefulWidgetBase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:meta/meta.dart';
 
+/// Full documentation: https://www.ezflap.io/testing/mock/mock.html#hosted-widgets
+///
+/// Helps with mocking a hosted ezFlap widget.
 class WidgetMockFactory {
+	/// Returns the native Flutter widget to instantiate instead of the ezFlap
+	/// widget that is being mocked.
+	/// When not provided - an empty [Container] will be returned.
 	late Widget Function() funcWidgetFactory;
+
+	/// Returns a custom class that:
+	///  - Extends [MockWidgetStateBase].
+	///  - Implements an interface (i.e. abstract class) that the mocked widget
+	///    extends.
+	///  - Provides any special behaviors necessary to mock the behavior of the
+	///    hosted widget that the host widget depends on.
 	final MockWidgetStateBase Function()? funcCreateMockWidgetState;
 
 	WidgetMockFactory({
@@ -57,23 +71,31 @@ class WidgetMockStatefulWidget extends _WidgetMockStatefulWidget {
 
 }
 
+/// Full documentation: https://www.ezflap.io/testing/mock/mock.html#mock-hosted-widget
+///
+/// Extend this class to mock an ezFlap widget.
 class MockWidgetStateBase extends EzStateBase<_WidgetMockStatefulWidget> {
+	//
 	@override
+	@internal
 	Widget $internalBuild(BuildContext context) {
 		return this.widget.widgetToRender;
 	}
 
 	@override
+	@internal
 	void $internalInitState() {
 
 	}
 
 	@override
+	@internal
 	void $internalOnReady() {
 
 	}
 }
 
+@internal
 abstract class $IWidgetWrapperForWidget {
 	dynamic $getRouteParam(String key);
 	_WidgetMockStatefulWidget? $mockWidget(String key);
@@ -82,6 +104,10 @@ abstract class $IWidgetWrapperForWidget {
 	Map<String, dynamic>? $getDIOverrides();
 }
 
+/// Full documentation: https://www.ezflap.io/testing/mock/mock.html#widgetmock
+///
+/// The WidgetMock class is created and initialized automatically by ezFlap,
+/// and is used as a container around a widget mock.
 class WidgetMock {
 	late MockWidgetStateBase _state;
 
@@ -96,12 +122,16 @@ class WidgetMock {
 		return widgetMock;
 	}
 
-	bool isPropPopulated(String key) {
-		return this._state.widget._isPropPopulated(key);
+	/// Returns true if a prop with the Assigned Name assignedName has been
+	/// populated (e.g. with a `z-bind` attribute).
+	bool isPropPopulated(String assignedName) {
+		return this._state.widget._isPropPopulated(assignedName);
 	}
 
-	dynamic getPropValue(String key) {
-		return this._state.widget._getPropValue(key);
+	/// Returns the value the prop was populated with, or null if the prop was
+	/// not populated.
+	dynamic getPropValue(String assignedName) {
+		return this._state.widget._getPropValue(assignedName);
 	}
 }
 
@@ -248,17 +278,17 @@ class WidgetWrapper<TState extends EzStateBase<TWidget>, TWidget extends EzState
 		return this.mapDIOverrides;
 	}
 
-	List<WidgetMock> getWidgetMocks(String key) {
-		List<MockWidgetStateBase> arr = this._mapArrWidgetStates[key] ?? [ ];
+	List<WidgetMock> getWidgetMocks(String widgetName) {
+		List<MockWidgetStateBase> arr = this._mapArrWidgetStates[widgetName] ?? [ ];
 		return arr.map((x) => this._makeWidgetMockFromState(x)).toList();
 	}
 
-	WidgetMock getSingleWidgetMock(String key) {
-		return this.getWidgetMocks(key).single;
+	WidgetMock getSingleWidgetMock(String widgetName) {
+		return this.getWidgetMocks(widgetName).single;
 	}
 
-	WidgetMock? tryGetSingleWidgetMock(String key) {
-		return this.getWidgetMocks(key).singleOrNull();
+	WidgetMock? tryGetSingleWidgetMock(String widgetName) {
+		return this.getWidgetMocks(widgetName).singleOrNull();
 	}
 
 	TWidget get widget {

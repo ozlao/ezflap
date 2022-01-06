@@ -31,18 +31,16 @@ enum _EzLifecycleState {
 /// Hooks are empty functions that are meant to be overridden by application
 /// code, as necessary. They begin with a "hook" prefix and so are easy to
 /// find and identify.
+@internal
 abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
-	/// Built-in initial ZMLs available for use. See [hookBuildInitialWidget]
-	/// for more info.
-	@protected static const String INITIAL_ZML_EMPTY = "<Container><Text>Loading...</Text></Container>";
-	@protected static const String INITIAL_ZML_LOADING = "<Container></Container>";
-
 	// we need this so that Obx() always have at least this one observable
 	// (because GetX throws error when Obx() wraps code that doesn't access any
 	// observable).
 	var _dummy = 42.obs;
 
 	static int _nextGuid = 1;
+
+	@internal
 	int $ezStateGuid = EzStateBase._nextGuid++;
 
 	List<VoidCallback> _arrOnDisposeCallbacks = [ ];
@@ -110,6 +108,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	/// Should not be overridden or used by application code
 	@protected
 	@nonVirtual
+	@internal
 	bool $isReady() {
 		return (this._ezLifecycleState.value == _EzLifecycleState.ready);
 	}
@@ -117,6 +116,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	/// Should not be overridden or used by application code
 	@protected
 	@nonVirtual
+	@internal
 	bool $hasReachedReadyNowOrBefore() {
 		return this._ezLifecycleReachedReady;
 	}
@@ -124,21 +124,25 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 
 	/// Should not be overridden or used by application code
 	@protected
+	@internal
 	void $internalInitState();
 
 
 	/// Should not be overridden or used by application code
 	@protected
+	@internal
 	void $internalOnReady();
 
 
 	/// Should not be overridden or used by application code
 	@protected
+	@internal
 	void $internalRefreshProps() { }
 
 
 	/// Should not be overridden by application code
 	@override
+	@nonVirtual
 	Widget build(BuildContext context) {
 		Widget widget = Obx(() {
 			// this is needed in case there are no observables in the widgets
@@ -168,6 +172,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 
 	/// Should not be overridden by application code
 	@protected
+	@internal
 	Widget $internalBuild(BuildContext context);
 
 
@@ -238,13 +243,18 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 
 	/// Called right after [hookInitState], to give the application code a
 	/// chance to provide an alternative Widget to render while the widget is
-	/// being initialized. This is useful when the primary ZML relies on data
-	/// that requires a delayed initialization (for example, data that needs
-	/// to be downloaded from the internet). When an initial widget is provided,
-	/// either by this function or by providing initial ZML in an _INITIAL_ZML
-	/// constant in the widget class - it is displayed instead of the primary
-	/// ZML until [hookPrepare] returns. If this hook returns a non-null value
-	/// then the _INITIAL_ZML constant is ignored.
+	/// being initialized.
+	///
+	/// This is useful when the primary ZML relies on data that requires a
+	/// delayed initialization.
+	/// For example - data that needs to be downloaded from the internet.
+	///
+	/// When an initial widget is provided, either by this function or by
+	/// providing initial ZML in an _INITIAL_ZML constant in the widget class -
+	/// it is displayed instead of the primary ZML until [hookPrepare] returns.
+	///
+	/// If this hook returns a non-null value then the _INITIAL_ZML constant is
+	/// ignored.
 	///
 	/// Example for using [hookBuildInitialWidget]:
 	///
@@ -304,6 +314,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	}
 
 	/// Should not be used by application code
+	@internal
 	static List<T> $autoMapper<T>(dynamic dyn, T? Function(dynamic value, dynamic key, dynamic keyOrIdx) func) {
 		List<T> arrRet = [ ];
 
@@ -344,11 +355,13 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	}
 
 	@nonVirtual
+	@internal
 	$ModelHandler<U>? $tryGetModelHandler<U>(String key) {
 		return this.widget.$tryGetModelHandler(key);
 	}
 
 	@nonVirtual
+	@internal
 	$ModelHandler<U> $getModelHandler<U>(String key, bool useDummyModelIfNotProvidedByHostWidget) {
 		$ModelHandler<U>? modelHandler = this.$tryGetModelHandler<U>(key);
 		if (modelHandler == null) {
@@ -365,12 +378,14 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	}
 
 	@nonVirtual
+	@internal
 	bool $hasModelHandler(String key) {
 		return (this.widget.$tryGetModelHandler(key) != null);
 	}
 
 	@protected
 	@nonVirtual
+	@internal
 	T $getRouteParam<T>(String key) {
 		if (this.widget.$hasWidgetWrapper()) {
 			return this.widget.$getRouteParamFromWidgetWrapper(key);
@@ -392,6 +407,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 
 	@protected
 	@nonVirtual
+	@internal
 	T $tryGetRouteParam<T>(String key, T defaultValue) {
 		if (this.widget.$hasWidgetWrapper()) {
 			return this.widget.$getRouteParamFromWidgetWrapper(key);
@@ -441,6 +457,7 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 	}
 
 	/// Should not be used by application code
+	@internal
 	static bool $testAttr(dynamic expected, dynamic actual) {
 		if (expected == null && actual == null) {
 			return true;
@@ -457,25 +474,33 @@ abstract class EzStateBase<T extends EzStatefulWidgetBase> extends State<T> {
 		return false;
 	}
 
+	@internal
 	EzStatefulWidgetBase $instantiateOrMock(String key, Function funcInstantiate) {
 		return this.widget.$tryMockWidget(key) ?? funcInstantiate();
 	}
 
 	@protected
+	@internal
 	void $initDI([ Map<String, dynamic>? mapOverrides ]) { }
 
+	/// Full documentation: https://www.ezflap.io/advanced/interpolated-text/interpolated-text.html
 	@protected
 	@nonVirtual
 	String? tryGetInterpolatedText() {
 		return this.widget.$tryGetInterpolatedText();
 	}
 
+	/// Full documentation: https://www.ezflap.io/advanced/interpolated-text/interpolated-text.html
 	@protected
 	@nonVirtual
 	String getInterpolatedText() {
 		return this.tryGetInterpolatedText()!;
 	}
 	
+	/// Full documentation: https://www.ezflap.io/deep-dive/events/events.html
+	///
+	/// Use this method to check whether a particular emit handler is available
+	/// (i.e. if one was provided by the host widget using `z-on`).
 	@protected
 	@nonVirtual
 	bool hasEmitHandler(String emitKey) {

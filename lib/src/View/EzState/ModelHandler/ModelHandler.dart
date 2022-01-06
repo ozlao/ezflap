@@ -1,4 +1,7 @@
 
+import 'package:meta/meta.dart';
+
+@internal
 class $ModelHandler<T> {
 	late T Function() _funcGetModelValue;
 	late void Function(T value) _funcSetModelValue;

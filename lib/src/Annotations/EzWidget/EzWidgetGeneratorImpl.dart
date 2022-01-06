@@ -231,6 +231,7 @@ class EzWidgetGeneratorImpl {
 		String sBuildHost = buildHostGenerator.generate();
 
 		return """
+			// ignore_for_file: invalid_use_of_internal_member
 			${sEzStateBase}
 			${sBuildHost}
 		""";

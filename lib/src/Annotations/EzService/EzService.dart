@@ -1,6 +1,10 @@
 
 import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
 
+/// Full documentation: https://www.ezflap.io/deep-dive/di/di.html#services
+///
+/// Marks a class a service. The class also needs to extend the generated
+/// `_EzServiceBase` class.
 class EzService extends EzAnnotationBase {
 	/// When not null, [overrideBaseClassType] denotes the parent of the
 	/// generated service base. Can be:

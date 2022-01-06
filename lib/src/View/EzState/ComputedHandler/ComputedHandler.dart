@@ -6,7 +6,9 @@ import 'package:ezflap/src/Utils/Rx/RxWrapper/RxWrapper.dart';
 import 'package:ezflap/src/Utils/Tick/Tick.dart';
 import 'package:ezflap/src/Utils/Types/Types.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:meta/meta.dart';
 
+@internal
 class $ComputedHandler<T> extends Guid {
 	final T Function() funcInvokeUserFunction; // e.g. () => this._computedAnswer()
 	final RxWrapper<T> _cachedValue = RxWrapper();

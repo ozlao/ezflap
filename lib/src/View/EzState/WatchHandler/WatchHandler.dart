@@ -4,7 +4,9 @@ import 'dart:async';
 import 'package:ezflap/src/Utils/Tick/Tick.dart';
 import 'package:ezflap/src/Utils/Types/Types.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:meta/meta.dart';
 
+@internal
 class $WatchHandler<T> {
 	final dynamic Function() funcGetWatchedValueOrRxWrapperOrRx;
 	final void Function(T newValue, T oldValue) funcOnChange;

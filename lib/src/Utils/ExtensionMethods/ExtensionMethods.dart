@@ -8,11 +8,16 @@ typedef TFuncReducer<T, U> = U Function(U, T);
 typedef TFuncPredicate1<T> = bool Function(T);
 typedef TFuncPredicate2<T, K> = bool Function(T, K);
 
+/// Utility String extensions
 extension StringUtilsExtension on String {
+	/// Trim whitespaces at the edges, and remove all tabs from the content of
+	/// the string.
 	String stripTabs() {
 		return this.trim().replaceAll("\t", "");
 	}
 
+	/// Splits a string into a [List] of trimmed Strings, potentially avoiding
+	/// splitting in the middle of a quoted text.
 	/// if [respectQuotes] is true - then the string is not split between
 	/// quotes. however, this functionality is (currently?) limited:
 	///   - escaping is not supported
@@ -131,6 +136,7 @@ extension StringUtilsExtension on String {
 		return this.count(ch).isOdd;
 	}
 
+	/// Returns the last character of the string, or null if empty.
 	String? lastChar() {
 		if (this.length == 0) {
 			return null;
@@ -138,6 +144,7 @@ extension StringUtilsExtension on String {
 		return this[this.length - 1];
 	}
 
+	/// Returns the number of occurrences of [pattern] in the string.
 	int count(String pattern) {
 		String s = this;
 		int i = 0;
@@ -153,72 +160,22 @@ extension StringUtilsExtension on String {
 
 		return cnt;
 	}
-}
 
-extension SimpleStringUtilsExtension on String {
+	/// Capitalizes the first character of the string.
 	String ucfirst() {
 		return "${this[0].toUpperCase()}${this.substring(1)}";
 	}
 
+	/// Changes the first character of the string to lower-case.
 	String lcfirst() {
 		return "${this[0].toLowerCase()}${this.substring(1)}";
 	}
 
-	String? between(String left, String right) {
-		int leftPos = this.indexOf(left);
-		int rightPos = this.indexOf(right);
-		if (leftPos == -1 || rightPos == -1 || leftPos + left.length - 1 > rightPos) {
-			return null;
-		}
-
-		return this.substring(leftPos + left.length, rightPos);
-	}
-
-	String? betweenWide(String left, String right) {
-		int leftPos = this.indexOf(left);
-		int rightPos = this.lastIndexOf(right);
-		if (leftPos == -1 || rightPos == -1 || leftPos > rightPos) {
-			return null;
-		}
-
-		return this.substring(leftPos + 1, rightPos);
-	}
-
-	bool before(String other) {
-		return this.smallerThan(other);
-	}
-
-	bool after(String other) {
-		return this.greaterThan(other);
-	}
-
-	bool beforeOrAt(String other) {
-		return this.smallerThanOrEqualTo(other);
-	}
-
-	bool afterOrAt(String other) {
-		return this.greaterThanOrEqualTo(other);
-	}
-
-	bool greaterThan(String other) {
-		return (this.compareTo(other) > 0);
-	}
-
-	bool smallerThan(String other) {
-		return (this.compareTo(other) < 0);
-	}
-
-	bool greaterThanOrEqualTo(String other) {
-		return (this.compareTo(other) >= 0);
-	}
-
-	bool smallerThanOrEqualTo(String other) {
-		return (this.compareTo(other) <= 0);
-	}
 }
 
 extension ListUtils<T> on List<T> {
 	void resetTo(T value) {
+		this.fillRange(0, this.length, value);
 		for (int idx = 0; idx < this.length; idx++) {
 			this[idx] = value;
 		}

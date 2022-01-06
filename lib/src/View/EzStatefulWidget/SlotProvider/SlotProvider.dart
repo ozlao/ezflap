@@ -1,9 +1,11 @@
 
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
 import 'package:flutter/widgets.dart';
+import 'package:meta/meta.dart';
 
 typedef TFuncSlotWidgetsBuilder = List<Widget> Function($SlotProviderScope);
 
+@internal
 class $SlotProviderScope {
 	final Map<String, dynamic> mapParams;
 
@@ -19,6 +21,7 @@ class $SlotProviderScope {
 	}
 }
 
+@internal
 class $SlotProvider {
 	final String? name;
 	final TFuncSlotWidgetsBuilder funcBuild;
