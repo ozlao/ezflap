@@ -33,6 +33,11 @@ class SvcReflector extends EzServiceBase {
 		return this._describeParameter(className, constructorName, parameterName, null, false);
 	}
 
+	bool hasNamedParameter(String className, String? constructorName, String parameterName) {
+		ParameterDescriptor? parameterDescriptor = this.tryDescribeNamedParameter(className, constructorName, parameterName);
+		return (parameterDescriptor != null);
+	}
+
 	ParameterDescriptor? tryDescribePositionalParameter(String className, String? constructorName, int parameterIdx) {
 		return this._describeParameter(className, constructorName, null, parameterIdx, false);
 	}
@@ -64,10 +69,12 @@ class SvcReflector extends EzServiceBase {
 			return null;
 		}
 
-		if (classDescriptor.isEzflapWidget) {
-			// constructor parameters are not used with ezFlap widgets.
-			return null;
-		}
+		// ezFlap widgets constructor parameter [key] is now allowed, so we'll
+		// just allow constructor parameters. we may tweak this in the future.
+		// if (classDescriptor.isEzflapWidget) {
+		// 	// constructor parameters are not used with ezFlap widgets.
+		// 	return null;
+		// }
 
 		LibraryElement libraryElement = classDescriptor.classElement.library;
 		ConstructorDescriptor? constructorDescriptor = this.describeConstructor(classDescriptor, constructorName);

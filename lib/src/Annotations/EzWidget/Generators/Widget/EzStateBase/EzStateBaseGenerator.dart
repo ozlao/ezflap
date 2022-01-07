@@ -62,6 +62,7 @@ class EzStateBaseGenerator extends WidgetGeneratorBase {
 		}
 
 		return """
+			@override
 			void \$internalRefreshProps() {
 				${callSuper}
 				
@@ -83,10 +84,13 @@ class EzStateBaseGenerator extends WidgetGeneratorBase {
 
 	String _makeBuildHostVariableGetters() {
 		String buildHostClassName = this.getBuildHostClassName();
+		String maybeOverride = this.isExtending() ? "@override" : "";
 		return """
+			${maybeOverride}
 			${buildHostClassName} \$getBuildHost() { return this._buildHost; }
 			
 			/// use only for testing!
+			${maybeOverride}
 			${buildHostClassName} get bh { return this.\$getBuildHost(); }
 		""";
 	}

@@ -713,26 +713,6 @@ void main() async {
 			);
 		});
 
-		test("Generator test - zKey", () {
-			_verifyDart(
-				zml: """
-					<Column>
-						<Container z-key="helloWorld" />
-					</Column>
-				""",
-
-				dart: """
-					return (Column(
-						children: [
-							(Container(
-								key: Key("helloWorld")
-							))
-						]
-					));
-				""",
-			);
-		});
-
 		test("Generator test - zKey on ezflap widget", () {
 			_verifyDart(
 				zml: """
@@ -888,6 +868,266 @@ void main() async {
 											)
 											: null
 						)
+					);
+				""",
+			);
+		});
+
+		test("Generator test - native, no-key", () {
+			_verifyDart(
+				zml: """
+					<Column>
+						<Container />
+					</Column>
+				""",
+
+				dart: """
+					return (Column(
+						children: [
+							(Container())
+						]
+					));
+				""",
+			);
+		});
+
+		test("Generator test - native, z-key", () {
+			_verifyDart(
+				zml: """
+					<Column>
+						<Container z-key="helloWorld" />
+					</Column>
+				""",
+
+				dart: """
+					return (Column(
+						children: [
+							(Container(
+								key: Key("helloWorld")
+							))
+						]
+					));
+				""",
+			);
+		});
+
+		test("Generator test - native, z-bind:key", () {
+			_verifyDart(
+				zml: """
+					<Column>
+						<Container z-bind:key="Key('nihaoShijie')" />
+					</Column>
+				""",
+
+				dart: """
+					return (Column(
+						children: [
+							(Container(
+								key: Key('nihaoShijie')
+							))
+						]
+					));
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor or prop, no key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorOrProp />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorOrProp", () => ZmlGeneratorTestNoKeyInConstructorOrProp())
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor or prop, z-key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorOrProp z-key="helloWorld" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorOrProp", () => ZmlGeneratorTestNoKeyInConstructorOrProp())
+							..\$initProps({
+								"key": Key("helloWorld")
+							})
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor or prop, z-bind:key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorOrProp z-bind:key="Key('nihaoShijie')" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestNoKeyInConstructorOrProp",
+							() => ZmlGeneratorTestNoKeyInConstructorOrProp()
+						)
+						..\$initProps({ "key": Key('nihaoShijie') })
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor but key in prop, no key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorButKeyInProp />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorButKeyInProp", () => ZmlGeneratorTestNoKeyInConstructorButKeyInProp())
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor but key in prop, z-key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorButKeyInProp z-key="helloWorld" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorButKeyInProp", () => ZmlGeneratorTestNoKeyInConstructorButKeyInProp())
+							..\$initProps({
+								"key": Key("helloWorld")
+							})
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, no key in constructor but key in prop, z-bind:key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestNoKeyInConstructorButKeyInProp z-bind:key="Key('nihaoShijie')" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestNoKeyInConstructorButKeyInProp",
+							() => ZmlGeneratorTestNoKeyInConstructorButKeyInProp()
+						)
+						..initProp<Key>("key", Key('nihaoShijie'))
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor but not in prop, no key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorButNotInProp />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestKeyInConstructorButNotInProp", () => ZmlGeneratorTestKeyInConstructorButNotInProp())
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor but not in prop, z-key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorButNotInProp z-key="helloWorld" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestKeyInConstructorButNotInProp",
+							() => ZmlGeneratorTestKeyInConstructorButNotInProp(key: Key("helloWorld"))
+						)
+						..\$initProps({
+							"key": Key("helloWorld")
+						})
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor but not in prop, z-bind:key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorButNotInProp z-bind:key="Key('nihaoShijie')" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestKeyInConstructorButNotInProp",
+							() => ZmlGeneratorTestKeyInConstructorButNotInProp(key: Key('nihaoShijie'))
+						)
+						..initProp<Key>("key", Key('nihaoShijie'))
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor and in prop, no key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorAndInProp />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock("ZmlGeneratorTestKeyInConstructorAndInProp", () => ZmlGeneratorTestKeyInConstructorAndInProp())
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor and in prop, z-key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorAndInProp z-key="helloWorld" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestKeyInConstructorAndInProp",
+							() => ZmlGeneratorTestKeyInConstructorAndInProp(key: Key("helloWorld"))
+						)
+						..\$initProps({
+							"key": Key("helloWorld")
+						})
+					);
+				""",
+			);
+		});
+
+		test("Generator test - ezflap, key in constructor and in prop, z-bind:key", () {
+			_verifyDart(
+				zml: """
+					<ZmlGeneratorTestKeyInConstructorAndInProp z-bind:key="Key('nihaoShijie')" />
+				""",
+
+				dart: """
+					return (
+						this._ezState.\$instantiateOrMock(
+							"ZmlGeneratorTestKeyInConstructorAndInProp",
+							() => ZmlGeneratorTestKeyInConstructorAndInProp(key: Key('nihaoShijie'))
+						)
+						..initProp<Key>("key", Key('nihaoShijie'))
 					);
 				""",
 			);

@@ -41,6 +41,8 @@ class SvcZmlParser extends EzServiceBase {
 	static const _Z_NAME_ATTR_NAME = "z-name";
 	static const _Z_SCOPE_ATTR_NAME = "z-scope"; // see Tag.zScope
 
+	static const NAMED_PARAMETER_KEY_NAME = "key";
+
 
 	Tag? tryParse(String zml) {
 		XmlDocument xDoc = XmlDocument.parse(zml);

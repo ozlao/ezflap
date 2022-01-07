@@ -38,6 +38,7 @@ class SvcZmlCompiler extends EzServiceBase {
 	SvcReflector get _svcReflector => SvcReflector.i();
 
 	static const String _COMPONENT = "SvcZmlCompiler";
+	static const String _WIDGET_CONSTRUCTOR_KEY_PARAM_NAME = "key";
 
 	AstNodeWrapper? tryGenerateAst(Tag rootTag) {
 		if (!this._verifyRootTag(rootTag)) {
@@ -189,7 +190,9 @@ class SvcZmlCompiler extends EzServiceBase {
 			return null;
 		}
 
-		bool isEzflapWidget = !tag.isTypeSpecialKeywordTag() && this._isEzflapWidget(tag);
+		bool isSpecial = tag.isTypeSpecialKeywordTag();
+		bool isEzflapWidget = !isSpecial && this._isEzflapWidget(tag);
+		bool ezFlapWidgetConstructorAcceptsKeyParameter = !isSpecial && this._doesEzFlapWidgetConstructorAcceptKeyParameter(tag);
 		AstNodeConstructor astNodeConstructor = AstNodeConstructor(
 			name: tag.name,
 			customConstructorName: effectiveCustomConstructorName,
@@ -210,6 +213,7 @@ class SvcZmlCompiler extends EzServiceBase {
 			zBuild: tag.zBuild,
 			zBuilder: tag.zBuilder,
 			zKey: tag.zKey,
+			ezFlapWidgetConstructorAcceptsKeyParameter: ezFlapWidgetConstructorAcceptsKeyParameter,
 			interpolatedText: tag.interpolatedText,
 		);
 		
@@ -333,6 +337,17 @@ class SvcZmlCompiler extends EzServiceBase {
 			return false;
 		}
 		return classDescriptor.isEzflapWidget;
+	}
+	
+	bool _doesEzFlapWidgetConstructorAcceptKeyParameter(Tag tag) {
+		if (!this._isEzflapWidget(tag)) {
+			return false;
+		}
+		
+		String className = tag.name;
+		String? customConstructorName = tag.zCustomConstructorName;
+		bool hasKey = this._svcReflector.hasNamedParameter(className, customConstructorName, _WIDGET_CONSTRUCTOR_KEY_PARAM_NAME);
+		return hasKey;
 	}
 
 	Map<String, AstNodeZssParameterValue> _makeNamedParamsNodes(Tag tag) {

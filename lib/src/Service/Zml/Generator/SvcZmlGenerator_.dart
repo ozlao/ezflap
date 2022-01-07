@@ -7,6 +7,7 @@ import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/EzServiceBase.dart';
 import 'package:ezflap/src/Service/Zml/AST/AstNodes.dart';
 import 'package:ezflap/src/Service/Zml/Generator/AnnotationsSummary/AnnotationsSummary.dart';
+import 'package:ezflap/src/Service/Zml/Parser/SvcZmlParser_.dart';
 import 'package:ezflap/src/Service/Zml/Parser/Tag/Tag.dart';
 import 'package:ezflap/src/Service/Zml/Transformer/SvcZmlTransformer_.dart';
 import 'package:ezflap/src/Utils/ExtensionMethods/ExtensionMethods.dart';
@@ -301,8 +302,9 @@ class SvcZmlGenerator extends EzServiceBase {
 		String namedParams = this._makeNamedParams(node);
 
 		if (node.isEzflapWidget) {
+			String nativeConstructorParams = this._makeNativeConstructorParams(node);
 			return """
-				this._ezState.\$instantiateOrMock("${node.name}", () => ${constructor}())
+				this._ezState.\$instantiateOrMock("${node.name}", () => ${constructor}(${nativeConstructorParams}))
 			""";
 		}
 
@@ -311,6 +313,19 @@ class SvcZmlGenerator extends EzServiceBase {
 				${namedParams}
 			)
 		""";
+		// return """
+		// 	${constructor}(${orderedParams})
+		// """;
+	}
+	
+	String _makeNativeConstructorParams(AstNodeConstructor node) {
+		if (!node.ezFlapWidgetConstructorAcceptsKeyParameter) {
+			// no need to send key to constructor
+			return "";
+		}
+		
+		String keyParameter = this._makeKeyParameter(node, surroundKeyNameWithQuotes: false);
+		return keyParameter;
 	}
 
 	String _makeInitLifecycleHandlers(AstNodeConstructor node) {
@@ -389,6 +404,9 @@ class SvcZmlGenerator extends EzServiceBase {
 			arrParts.add(pairCode);
 		});
 
+		// we use _makeZKeyParameter() and not _makeKeyParameter() because if
+		// the key is provided in a named parameter then it will already have
+		// been handled in the forEach above.
 		arrParts.add(this._makeZKeyParameter(node, surroundKeyNameWithQuotes: false));
 
 		String code = arrParts.where((x) => x.isNotEmpty).join(",");
@@ -399,8 +417,42 @@ class SvcZmlGenerator extends EzServiceBase {
 		if (node.zKey == null) {
 			return "";
 		}
+		return this._makeKeyParameter(node, surroundKeyNameWithQuotes: surroundKeyNameWithQuotes);
+	}
+
+	String _makeKeyParameter(AstNodeConstructor node, { required bool surroundKeyNameWithQuotes }) {
+		String? keyValueLiteral = this._tryMakeKeyParameterValueFromZKeyOrNamedParameter(node);
+		if (keyValueLiteral == null) {
+			return "";
+		}
 		String ch = (surroundKeyNameWithQuotes ? "\"" : "");
-		return "${ch}key${ch}: Key(\"${node.zKey}\")";
+		return "${ch}key${ch}: ${keyValueLiteral}";
+	}
+
+	String? _tryMakeKeyParameterValueFromZKeyOrNamedParameter(AstNodeConstructor node) {
+		String? zKey = node.zKey;
+		if (zKey != null) {
+			// has a string key
+			return """
+				Key("${zKey}")
+			""";
+		}
+
+		AstNodeZssParameterValue? paramValue = node.mapNamedParams[SvcZmlParser.NAMED_PARAMETER_KEY_NAME];
+		if (paramValue != null) {
+			AstNodeBase node = paramValue.valueNode;
+			if (node is AstNodeNull) {
+				// no value
+				return null;
+			}
+			else if (node is AstNodeLiteral) {
+				return this._generateFromNodeLiteral(node);
+			}
+			else {
+				this._svcLogger.logErrorFrom(_COMPONENT, "expected paramValue.valueNode to be AstNodeNull or AstNodeLiteral but it's: ${node.runtimeType}");
+				return null;
+			}
+		}
 	}
 
 	String _makeNamedParamsMapForEzflapWidget(AstNodeConstructor node) {

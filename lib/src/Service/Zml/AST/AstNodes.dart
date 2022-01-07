@@ -106,6 +106,7 @@ class AstNodeConstructor extends AstNodeConstructorLike {
 	final String? zBuilder;
 	final String? zKey;
 	final String? interpolatedText;
+	final bool ezFlapWidgetConstructorAcceptsKeyParameter;
 
 	AstNodeConstructor({
 		required this.name,
@@ -127,6 +128,7 @@ class AstNodeConstructor extends AstNodeConstructorLike {
 		required this.zBuild,
 		required this.zBuilder,
 		required this.zKey,
+		required this.ezFlapWidgetConstructorAcceptsKeyParameter,
 		required this.interpolatedText,
 	});
 

@@ -28,8 +28,8 @@ class EzOptionalModelGenerator extends AnnotationGeneratorBase<EzOptionalModel, 
 			}
 
 			${protectedSnippet}
-			bool ${ch}${data.derivedName}_isOfType<T>() {
-				return (${modelHandlerGetter} is \$ModelHandler<T>);
+			bool ${ch}${data.derivedName}_isOfType<U>() {
+				return (${modelHandlerGetter} is \$ModelHandler<U>);
 			}
 
 			${protectedSnippet}
