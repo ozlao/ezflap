@@ -340,20 +340,6 @@ void main() {
 			expect(tag.arrUnnamedChildren[0].zCustomConstructorName, "rich");
 		});
 
-		test("Parse test - z-key", () {
-			Tag? maybeTag = svcZmlParser.tryParse("""
-				<Column>
-					<Container z-key="helloWorld" />
-				</Column>
-			""");
-
-			expect(maybeTag != null, true);
-			Tag tag = maybeTag!;
-			expect(tag.name, "Column");
-			expect(tag.arrUnnamedChildren.length, 1);
-			expect(tag.arrUnnamedChildren[0].zKey, "helloWorld");
-		});
-
 		test("Parse test - unescape ZML text", () {
 			expect(svcZmlParser.unescapeZmlTextForDisplay("hello world"), "hello world");
 

@@ -333,7 +333,7 @@ Future<void> main() async {
 
 		test("AST test - positional parameters", () {
 			Tag? maybeTag = svcZmlParser.tryParse("""
-				<Text :3="fourth positional" z-attr:third="third named" z-bind:2="third positional" z-bind:4="fifth positional" z-bind:fourth="fourth named">
+				<Text :3="fourth positional" z-attr:third="third named" z-bind:2="third positional" z-bind:4="fifth positional" z-bind:maxLines="2">
 					<:1->second positional</:1->
 					<first->first named</first->
 					<:0->first positional</:0->
@@ -363,10 +363,10 @@ Future<void> main() async {
 			expect(nodeText.mapNamedParams.length, 3);
 			expect(nodeText.mapNamedParams.containsKey("first"), true);
 			expect(nodeText.mapNamedParams.containsKey("second"), true);
-			expect(nodeText.mapNamedParams.containsKey("fourth"), true);
+			expect(nodeText.mapNamedParams.containsKey("maxLines"), true);
 			expect(nodeText.mapNamedParams["first"]!.valueNode is AstNodeLiteral, true);
 			expect(nodeText.mapNamedParams["second"]!.valueNode is AstNodeLiteral, true);
-			expect(nodeText.mapNamedParams["fourth"]!.valueNode is AstNodeLiteral, true);
+			expect(nodeText.mapNamedParams["maxLines"]!.valueNode is AstNodeLiteral, true);
 
 			expect(nodeText.arrPositionalParams.length, 6);
 			expect(nodeText.arrPositionalParams[0].valueNode is AstNodeLiteral, true);
@@ -569,34 +569,6 @@ Future<void> main() async {
 			AstNodeConstructor text = (column.mapNamedParams["children"]!.valueNode as AstNodeConstructorsList).arrConstructorNodes[0] as AstNodeConstructor;
 			expect(text.name, "Text");
 			expect(text.customConstructorName, "rich");
-		});
-
-		test("AST test - z-key", () {
-			AstNodeWrapper? maybeNode = svcLogger.invoke(() {
-				Tag? maybeTag = svcZmlParser.tryParse("""
-					<Column>
-						<Container z-key="helloWorld" />
-					</Column>
-				""");
-
-				expect(maybeTag != null, true);
-				Tag tag = svcZmlTransformer.transform(maybeTag!);
-				return svcZmlCompiler.tryGenerateAst(tag);
-			});
-
-			svcLogger.printLoggedErrorsIfNeeded();
-
-			expect(svcLogger.hasLoggedErrors(), false);
-			AstNodeConstructor column = maybeNode!.rootConstructorNode;
-			expect(column.name, "Column");
-			expect(column.mapNamedParams.containsKey("children"), true);
-			expect(column.mapNamedParams["children"]!.valueNode is AstNodeConstructorsList, true);
-			expect((column.mapNamedParams["children"]!.valueNode as AstNodeConstructorsList).arrConstructorNodes.length, 1);
-			expect((column.mapNamedParams["children"]!.valueNode as AstNodeConstructorsList).arrConstructorNodes[0] is AstNodeConstructor, true);
-
-			AstNodeConstructor container = (column.mapNamedParams["children"]!.valueNode as AstNodeConstructorsList).arrConstructorNodes[0] as AstNodeConstructor;
-			expect(container.name, "Container");
-			expect(container.zKey, "helloWorld");
 		});
 
 		test("AST test - mutually-exclusive children in a single-child parameter", () {

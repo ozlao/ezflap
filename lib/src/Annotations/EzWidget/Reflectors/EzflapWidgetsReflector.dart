@@ -1,6 +1,9 @@
 
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:ezflap/src/Annotations/EzWidget/EzWidget.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzEmit/EzEmitVisitor.dart';
+import 'package:ezflap/src/Annotations/Utils/AnnotationUtils.dart';
 import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/Reflector/ClassDescriptor/ClassDescriptor.dart';
 import 'package:ezflap/src/Service/Reflector/SvcReflector_.dart';
@@ -38,7 +41,7 @@ class EzflapWidgetsReflector {
 		}
 
 		EzEmitVisitor ezEmitVisitor = EzEmitVisitor();
-		List<ClassElement> arrStateClassElementAndUp = classDescriptor.getStateClassElementAndUp();
+		List<ClassElement> arrStateClassElementAndUp = classDescriptor.getStateClassElementAndUp(EzflapWidgetsReflector.tryGetParentClassElementFromEzWidgetExtend);
 		//classDescriptor.stateClassElement!.visitChildren(ezEmitVisitor);
 		for (ClassElement el in arrStateClassElementAndUp) {
 			el.visitChildren(ezEmitVisitor);
@@ -51,5 +54,38 @@ class EzflapWidgetsReflector {
 		}
 
 		return ezflapWidgetDescriptor;
+	}
+
+	static ClassElement? tryGetParentClassElementFromEzWidgetExtend(ClassElement el) {
+		ElementAnnotation? ann = AnnotationUtils.tryGetAnnotation<EzWidget>(el);
+		if (ann == null) {
+			return null;
+		}
+
+		//Expression? expr = AnnotationUtils.tryGetAnnotationArgumentFromAst(ann, 1);
+		Expression? expr = AnnotationUtils.tryGetAnnotationArgumentFromAstByName(ann, EzWidget.EZ_WIDGET__EXTEND);
+		if (expr == null) {
+			return null;
+		}
+
+		if (expr is! NamedExpression) {
+			return null;
+		}
+
+		Expression innerExpr = expr.expression;
+		if (innerExpr is! SimpleIdentifier) {
+			return null;
+		}
+
+		Element? parentElement = innerExpr.staticElement;
+		if (parentElement == null) {
+			return null;
+		}
+
+		if (parentElement is! ClassElement) {
+			return null;
+		}
+
+		return parentElement;
 	}
 }

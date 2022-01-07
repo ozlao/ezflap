@@ -84,7 +84,7 @@ class EzJsonGenerator extends GeneratorForAnnotation<EzJson> {
 		String className = this._getClassName();
 		return """
 			static ${className} factoryFromJson(String sJson) {
-				${className} instance = new ${className}();
+				${className} instance = ${className}();
 				instance.fromJson(sJson);
 				return instance;
 			}
@@ -95,7 +95,7 @@ class EzJsonGenerator extends GeneratorForAnnotation<EzJson> {
 		String className = this._getClassName();
 		return """
 			static ${className} factoryFromJsonMap(Map<String, dynamic> map) {
-				${className} instance = new ${className}();
+				${className} instance = ${className}();
 				instance.fromJsonMap(map);
 				return instance;
 			}
@@ -115,6 +115,8 @@ class EzJsonGenerator extends GeneratorForAnnotation<EzJson> {
 		String deepCloneCode = this._makeDeepCloneCode();
 
 		return """
+			// ignore_for_file: unused_element, duplicate_ignore
+			
 			abstract class _${className}Base with ${dataProviderMixinName} {
 				${factoryFromJsonCode}
 				${factoryFromJsonMapCode}
@@ -165,7 +167,7 @@ class EzJsonGenerator extends GeneratorForAnnotation<EzJson> {
 		return """
 			${className} deepClone() {
 				String sJson = this.toJson();
-				${className} instance = new ${className}();
+				${className} instance = ${className}();
 				instance.fromJson(sJson);
 				return instance;
 			}

@@ -61,9 +61,36 @@ class AnnotationUtils {
 		return value;
 	}
 
-	static String? tryGetAnnotationArgumentLiteralFromAst(ElementAnnotation elementAnnotation, int argumentIdx) {
-		// kinda dirty but useful to get the string representation of the type. e.g. in case it's an enum or some other "complicated" type.
+	static Annotation _getAnnotationAst(ElementAnnotation elementAnnotation) {
 		Annotation annotationAst = (elementAnnotation as dynamic).annotationAst;
+		return annotationAst;
+	}
+
+	static Expression? tryGetAnnotationArgumentFromAstByName(ElementAnnotation elementAnnotation, String paramName) {
+		Annotation annotationAst = AnnotationUtils._getAnnotationAst(elementAnnotation);
+		ArgumentList? argumentList = annotationAst.arguments;
+		if (argumentList == null) {
+			return null;
+		}
+
+		for (int i = 0; i < argumentList.length; i++) {
+			Expression? expr = AnnotationUtils.tryGetAnnotationArgumentFromAst(elementAnnotation, i);
+			if (expr == null || expr is! NamedExpression) {
+				continue;
+			}
+
+			String exprName = expr.name.label.name;
+			if (exprName == paramName) {
+				return expr;
+			}
+		}
+
+		return null;
+	}
+
+	static Expression? tryGetAnnotationArgumentFromAst(ElementAnnotation elementAnnotation, int argumentIdx) {
+		// kinda dirty but useful to get the string representation of the type. e.g. in case it's an enum or some other "complicated" type.
+		Annotation annotationAst = AnnotationUtils._getAnnotationAst(elementAnnotation);
 		ArgumentList? argumentList = annotationAst.arguments;
 		if (argumentList == null) {
 			return null;
@@ -74,7 +101,12 @@ class AnnotationUtils {
 			return null;
 		}
 
-		String argumentLiteral = nodeList[argumentIdx].toString();
-		return argumentLiteral;
+		Expression expr = nodeList[argumentIdx];
+		return expr;
+	}
+
+	static String? tryGetAnnotationArgumentLiteralFromAst(ElementAnnotation elementAnnotation, int argumentIdx) {
+		Expression? expr = AnnotationUtils.tryGetAnnotationArgumentFromAst(elementAnnotation, argumentIdx);
+		return expr?.toString();
 	}
 }

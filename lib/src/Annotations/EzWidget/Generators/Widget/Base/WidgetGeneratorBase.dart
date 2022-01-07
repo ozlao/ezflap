@@ -22,7 +22,7 @@ abstract class WidgetGeneratorBase {
 
 	@protected
 	String? getExtendBaseClass() {
-		ConstantReader extendBaseClassReader = this.annotation.read(EzWidget.EZ_WIDGET__EXTEND_FROM);
+		ConstantReader extendBaseClassReader = this.annotation.read(EzWidget.EZ_WIDGET__EXTEND);
 		if (extendBaseClassReader.isType) {
 			DartType type = extendBaseClassReader.typeValue;
 			String? typeName = type.element?.name;

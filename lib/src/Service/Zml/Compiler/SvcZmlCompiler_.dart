@@ -1,4 +1,6 @@
 
+import 'package:analyzer/dart/element/element.dart';
+import 'package:ezflap/src/Annotations/EzWidget/Reflectors/EzflapWidgetsReflector.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzModel/EzModelVisitor.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzOptionalModel/EzOptionalModelVisitor.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzProp/EzPropVisitor.dart';
@@ -139,20 +141,25 @@ class SvcZmlCompiler extends EzServiceBase {
 			// it's an ezFlap widget. get by prop.
 			EzPropVisitor ezPropVisitor = this._getOrMakeEzPropVisitorForClassDescriptor(classDescriptor);
 			EzPropData? ezPropData = ezPropVisitor.tryGetEzPropData(parameterName);
-			if (ezPropData == null) {
-				return null;
+			if (ezPropData != null) {
+				return AstNodeLiteral(ezPropData.typeWithNullability);
 			}
 
-			return AstNodeLiteral(ezPropData.typeWithNullability);
-		}
-		else {
-			ParameterDescriptor? desc = this._svcReflector.describeNamedOrPositionalParameter(className, constructorName, parameterName, logErrorsIfNotFound);
-			if (desc == null) {
+			// there is one special case; if the parameter is [key], then it's
+			// a special parameter, that should also be looked for in the
+			// native constructor of ezFlap widgets (so we will return null
+			// here only if the parameter is NOT [key]).
+			if (parameterName != SvcZmlParser.NAMED_PARAMETER_KEY_NAME) {
 				return null;
 			}
-
-			return AstNodeLiteral(desc.typeLiteral);
 		}
+
+		ParameterDescriptor? desc = this._svcReflector.describeNamedOrPositionalParameter(className, constructorName, parameterName, logErrorsIfNotFound);
+		if (desc == null) {
+			return null;
+		}
+
+		return AstNodeLiteral(desc.typeLiteral);
 	}
 
 	String? _makeConditionExpressionIfNeeded(List<String> arrClauses) {
@@ -212,7 +219,6 @@ class SvcZmlCompiler extends EzServiceBase {
 			zRefsKey: tag.zRefsKey,
 			zBuild: tag.zBuild,
 			zBuilder: tag.zBuilder,
-			zKey: tag.zKey,
 			ezFlapWidgetConstructorAcceptsKeyParameter: ezFlapWidgetConstructorAcceptsKeyParameter,
 			interpolatedText: tag.interpolatedText,
 		);
@@ -302,11 +308,6 @@ class SvcZmlCompiler extends EzServiceBase {
 	}
 
 	bool _verifyNoDuplicatesOrLogError(Tag tag, Map<String, AstNodeZssParameterValue> mapNamesParams) {
-		if (mapNamesParams.containsKey("key") && tag.zKey != null) {
-			this._svcLogger.logErrorFrom(_COMPONENT, "Tag ${tag} has both a [key] named parameter and a [z-key] attribute. They are mutually-exclusive.");
-			return false;
-		}
-
 		return true;
 	}
 
@@ -662,11 +663,12 @@ class SvcZmlCompiler extends EzServiceBase {
 		if (this._mapEzPropVisitorsForClassDescriptors.containsKey(classDescriptor)) {
 			return this._mapEzPropVisitorsForClassDescriptors[classDescriptor]!;
 		}
-		
+
 		EzPropVisitor ezPropVisitor = EzPropVisitor();
 
 		assert(classDescriptor.stateClassElement != null);
-		ezPropVisitor.visitAll(classDescriptor.getStateClassElementAndUp());
+		List<ClassElement> arrStateClassElementAndUp = classDescriptor.getStateClassElementAndUp(EzflapWidgetsReflector.tryGetParentClassElementFromEzWidgetExtend);
+		ezPropVisitor.visitAll(arrStateClassElementAndUp);
 
 		this._mapEzPropVisitorsForClassDescriptors[classDescriptor] = ezPropVisitor;
 		
@@ -876,6 +878,7 @@ class SvcZmlCompiler extends EzServiceBase {
 	void _applyNamedParametersFromAttributes(Map<String, AstNodeZssParameterValue> map, Tag tagToProcess) {
 		map.addAll(tagToProcess.mapZBinds
 			.whereKey((x) => this._doesTagLookLikeNamedParameter(x))
+			.whereKey((x) => this._doesOrCouldNamedParamExistInClass(tagToProcess, x)) // if no such named param - skip it
 			.map((String key, String value) {
 				AstNodeLiteral? nodeType = this._getTypeLiteral(tagToProcess, key, logErrorsIfNotFound: false);
 				AstNodeLiteral nodeValue = AstNodeLiteral(value);
@@ -891,7 +894,23 @@ class SvcZmlCompiler extends EzServiceBase {
 			.map((String key, String value) => MapEntry(key, AstNodeZssParameterValue.simple(AstNodeStringWithMustache(value))))
 		);
 	}
-	
+
+	bool _doesOrCouldNamedParamExistInClass(Tag tag, String paramName) {
+if (tag.name == "DurationInput" && paramName == "min") {
+	int a = 2;
+}
+		if (tag.isTypeSpecialKeywordTag()) {
+			return true;
+		}
+
+		bool result = this._doesNamedParamExistInClass(tag, paramName);
+		return result;
+	}
+
+	bool _doesNamedParamExistInClass(Tag tag, String paramName) {
+		return (this._getTypeLiteral(tag, paramName, logErrorsIfNotFound: false) != null);
+	}
+
 	void _applyPositionalParametersFromStrings(Map<int, AstNodeZssParameterValue> map, Tag tagToProcess) {
 		map.addAll(tagToProcess.mapZBinds
 			.whereKey((x) => this._doesTagLookLikePositionalParameter(x))
@@ -901,10 +920,6 @@ class SvcZmlCompiler extends EzServiceBase {
 			.whereKey((x) => this._doesTagLookLikePositionalParameter(x))
 			.map((String key, String value) => MapEntry(this._tryGetPositionalParameterPositionFromName(key)!, AstNodeZssParameterValue.simple(AstNodeStringWithMustache(value))))
 		);
-	}
-
-	bool _doesNamedParamExistInClass(Tag tag, String paramName) {
-		return (this._getTypeLiteral(tag, paramName, logErrorsIfNotFound: false) != null);
 	}
 
 	AstNodeConstructorsList _makeAstNodeConstructorsList(List<AstNodeConstructorLike> arrConstructors) {
@@ -959,38 +974,28 @@ class SvcZmlCompiler extends EzServiceBase {
 		}
 
 		EzModelVisitor ezModelVisitor = EzModelVisitor();
-		ezModelVisitor.visitAll(desc.getStateClassElementAndUp());
+		ezModelVisitor.visitAll(desc.getStateClassElementAndUp(EzflapWidgetsReflector.tryGetParentClassElementFromEzWidgetExtend));
 
 		EzOptionalModelVisitor ezOptionalModelVisitor = EzOptionalModelVisitor();
-		ezOptionalModelVisitor.visitAll(desc.getStateClassElementAndUp());
+		ezOptionalModelVisitor.visitAll(desc.getStateClassElementAndUp(EzflapWidgetsReflector.tryGetParentClassElementFromEzWidgetExtend));
 
-		/// see explanation in doc of Tag.zModelTypeLiteral
-		String? typeLiteral = tag.zModelTypeLiteral;
-		if (typeLiteral == null) {
-			EzModelData? modelData = ezModelVisitor.tryGetEzAnnotationDataByAssignedName(key);
-			if (modelData != null) {
-				typeLiteral = modelData.typeWithNullability;
-			}
+		String? typeLiteral;
+		EzModelData? modelData = ezModelVisitor.tryGetEzAnnotationDataByAssignedName(key);
+		if (modelData != null) {
+			typeLiteral = modelData.typeWithNullability;
+		}
 
-			if (modelData == null) {
-				EzOptionalModelData? optionalModelData = ezOptionalModelVisitor.tryGetEzAnnotationDataByAssignedName(key);
-				if (optionalModelData != null) {
-					typeLiteral = optionalModelData.typeWithNullability;
-				}
+		if (modelData == null) {
+			EzOptionalModelData? optionalModelData = ezOptionalModelVisitor.tryGetEzAnnotationDataByAssignedName(key);
+			if (optionalModelData != null) {
+				typeLiteral = optionalModelData.typeWithNullability;
 			}
 		}
 
 		if (typeLiteral == null) {
 			this._svcLogger.logErrorFrom(_COMPONENT, """\n
 				Could not figure out the type of EzModel or EzOptionalModel [${key}] on tag ${tag}.
-				Defaulting to [dynamic]. This may be due to a bug in the Dart analyzer package.
-				Use [z-model-type-literal] next to the [z-model] to tell ezFlap the type of the model
-				(i.e. the type used in the @EzModel or @EzOptionalModel declaration in the hosted widget).
-				For example:
-					z-model-type-literal="int?"
-				Currently, ezFlap doesn't support different types for different models on the widget.
-				If there are multiple models, and if the widget in question is inherited - consider to
-				remove the inheritance (inheritance is a likely cause to this situation).
+				Defaulting to [dynamic].
 			""");
 			return "dynamic";
 		}

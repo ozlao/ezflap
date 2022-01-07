@@ -16,12 +16,22 @@ class ClassDescriptor {
 		required this.stateClassElement,
 	});
 
-	List<ClassElement> getStateClassElementAndUp() {
+	List<ClassElement> getStateClassElementAndUp(ClassElement? Function(ClassElement) funcCustomGetParentClassElement) {
 		List<ClassElement> arr = [ ];
-		ClassElement? el = this.stateClassElement;
-		while (el != null) {
+		ClassElement? maybeEl = this.stateClassElement;
+		if (maybeEl == null) {
+			return arr;
+		}
+
+		ClassElement el = maybeEl;
+		while (true) {
 			arr.add(el);
-			el = el.supertype?.element;
+			ClassElement? nextEl = funcCustomGetParentClassElement(el);
+			nextEl ??= el.supertype?.element;
+			if (nextEl == null) {
+				break;
+			}
+			el = nextEl;
 		}
 		return arr;
 	}

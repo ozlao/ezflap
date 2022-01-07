@@ -231,7 +231,7 @@ class EzWidgetGeneratorImpl {
 		String sBuildHost = buildHostGenerator.generate();
 
 		return """
-			// ignore_for_file: invalid_use_of_internal_member, camel_case_types, unused_element, prefer_function_declarations_over_variables
+			// ignore_for_file: invalid_use_of_internal_member, camel_case_types, unused_element, prefer_function_declarations_over_variables, avoid_types_as_parameter_names, dead_code, unnecessary_overrides, prefer_const_literals_to_create_immutables, unnecessary_string_escapes, unnecessary_string_interpolations, prefer_adjacent_string_concatenation, unnecessary_cast
 			${sEzStateBase}
 			${sBuildHost}
 		""";

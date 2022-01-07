@@ -103,6 +103,9 @@ abstract class EzStatefulWidgetBase extends StatefulWidget {
 
 	@internal
 	T $getProp<T>(String key, [ T? def ]) {
+if (key == "key") {
+int a = 2;
+}
 		if (this._mapProps == null) {
 			return def as T;
 		}

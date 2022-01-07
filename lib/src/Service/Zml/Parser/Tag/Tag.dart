@@ -35,7 +35,6 @@ class Tag {
 	final bool isNamedChildTag;
 
 	String? zCustomConstructorName;
-	String? zKey;
 	String? stringAttrClass;
 	String? attrClass;
 	String? zIf;
@@ -51,12 +50,6 @@ class Tag {
 	/// used with <ZSlotProvider> to designate the name of the scope (that is
 	/// passed from the consumer)
 	String? zScope;
-
-	/// used with z-model. optional. only needed in rare cases when Dart's
-	/// Analyzer fails to detect the @EzModel (or @EzOptionalModel) type. this
-	/// seems to happen in some (but not all) cases when passing [z-model] to
-	/// an inheriting widget, where the @EzModel is defined on its base class.
-	String? zModelTypeLiteral;
 
 	String text = "";
 	String textWithoutXmlComments = "";

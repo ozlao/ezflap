@@ -217,7 +217,7 @@ void main() async {
 		test("Generator test - z-bind", () {
 			_verifyDart(
 				zml: """
-					<Column z-bind:hello="world">
+					<Column z-bind:mainAxisAlignment="MainAxisAlignment.end">
 						<children->
 							<Text>text 1</Text>
 						</children->
@@ -229,7 +229,7 @@ void main() async {
 						children: [
 							(Text(${t("text 1")}))
 						],
-						hello: world
+						mainAxisAlignment: MainAxisAlignment.end
 					));
 				""",
 			);
@@ -713,23 +713,6 @@ void main() async {
 			);
 		});
 
-		test("Generator test - zKey on ezflap widget", () {
-			_verifyDart(
-				zml: """
-					<ZmlGeneratorTestSlotsSingleChildExtendEzStatefulWidget z-key="helloWorld" />
-				""",
-
-				dart: """
-					return (
-						this._ezState.\$instantiateOrMock("ZmlGeneratorTestSlotsSingleChildExtendEzStatefulWidget", () => ZmlGeneratorTestSlotsSingleChildExtendEzStatefulWidget())
-							..\$initProps({
-								"key": Key("helloWorld")
-							})
-					);
-				""",
-			);
-		});
-
 		test("Generator test - interpolated text on ezflap widget", () {
 			_verifyDart(
 				zml: """
@@ -891,11 +874,11 @@ void main() async {
 			);
 		});
 
-		test("Generator test - native, z-key", () {
+		test("Generator test - native, prefixless key", () {
 			_verifyDart(
 				zml: """
 					<Column>
-						<Container z-key="helloWorld" />
+						<Container key="{{ 'hello' + 'World' }}" />
 					</Column>
 				""",
 
@@ -903,7 +886,7 @@ void main() async {
 					return (Column(
 						children: [
 							(Container(
-								key: Key("helloWorld")
+								key: Key(\"\"\"\${ 'hello' + 'World' }\"\"\")
 							))
 						]
 					));
@@ -945,18 +928,15 @@ void main() async {
 			);
 		});
 
-		test("Generator test - ezflap, no key in constructor or prop, z-key", () {
+		test("Generator test - ezflap, no key in constructor or prop, prefixless key", () {
 			_verifyDart(
 				zml: """
-					<ZmlGeneratorTestNoKeyInConstructorOrProp z-key="helloWorld" />
+					<ZmlGeneratorTestNoKeyInConstructorOrProp key="{{ 'hello' + 'World' }}" />
 				""",
 
 				dart: """
 					return (
 						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorOrProp", () => ZmlGeneratorTestNoKeyInConstructorOrProp())
-							..\$initProps({
-								"key": Key("helloWorld")
-							})
 					);
 				""",
 			);
@@ -974,7 +954,6 @@ void main() async {
 							"ZmlGeneratorTestNoKeyInConstructorOrProp",
 							() => ZmlGeneratorTestNoKeyInConstructorOrProp()
 						)
-						..\$initProps({ "key": Key('nihaoShijie') })
 					);
 				""",
 			);
@@ -994,17 +973,17 @@ void main() async {
 			);
 		});
 
-		test("Generator test - ezflap, no key in constructor but key in prop, z-key", () {
+		test("Generator test - ezflap, no key in constructor but key in prop, prefixless key", () {
 			_verifyDart(
 				zml: """
-					<ZmlGeneratorTestNoKeyInConstructorButKeyInProp z-key="helloWorld" />
+					<ZmlGeneratorTestNoKeyInConstructorButKeyInProp key="{{ 'hello' + 'World' }}" />
 				""",
 
 				dart: """
 					return (
 						this._ezState.\$instantiateOrMock("ZmlGeneratorTestNoKeyInConstructorButKeyInProp", () => ZmlGeneratorTestNoKeyInConstructorButKeyInProp())
 							..\$initProps({
-								"key": Key("helloWorld")
+								"key": Key(\"\"\"\${ 'hello' + 'World' }\"\"\")
 							})
 					);
 				""",
@@ -1043,20 +1022,20 @@ void main() async {
 			);
 		});
 
-		test("Generator test - ezflap, key in constructor but not in prop, z-key", () {
+		test("Generator test - ezflap, key in constructor but not in prop, prefixless key", () {
 			_verifyDart(
 				zml: """
-					<ZmlGeneratorTestKeyInConstructorButNotInProp z-key="helloWorld" />
+					<ZmlGeneratorTestKeyInConstructorButNotInProp key="{{ 'hello' + 'World' }}" />
 				""",
 
 				dart: """
 					return (
 						this._ezState.\$instantiateOrMock(
 							"ZmlGeneratorTestKeyInConstructorButNotInProp",
-							() => ZmlGeneratorTestKeyInConstructorButNotInProp(key: Key("helloWorld"))
+							() => ZmlGeneratorTestKeyInConstructorButNotInProp(key: Key(\"\"\"\${ 'hello' + 'World' }\"\"\"))
 						)
 						..\$initProps({
-							"key": Key("helloWorld")
+							"key": Key(\"\"\"\${ 'hello' + 'World' }\"\"\")
 						})
 					);
 				""",
@@ -1095,20 +1074,20 @@ void main() async {
 			);
 		});
 
-		test("Generator test - ezflap, key in constructor and in prop, z-key", () {
+		test("Generator test - ezflap, key in constructor and in prop, prefixless key", () {
 			_verifyDart(
 				zml: """
-					<ZmlGeneratorTestKeyInConstructorAndInProp z-key="helloWorld" />
+					<ZmlGeneratorTestKeyInConstructorAndInProp key="{{ 'hello' + 'World' }}" />
 				""",
 
 				dart: """
 					return (
 						this._ezState.\$instantiateOrMock(
 							"ZmlGeneratorTestKeyInConstructorAndInProp",
-							() => ZmlGeneratorTestKeyInConstructorAndInProp(key: Key("helloWorld"))
+							() => ZmlGeneratorTestKeyInConstructorAndInProp(key: Key(\"\"\"\${ 'hello' + 'World' }\"\"\"))
 						)
 						..\$initProps({
-							"key": Key("helloWorld")
+							"key": Key(\"\"\"\${ 'hello' + 'World' }\"\"\")
 						})
 					);
 				""",

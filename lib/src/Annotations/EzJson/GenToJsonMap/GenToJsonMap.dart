@@ -88,10 +88,10 @@ class GenToJsonMap with EzJsonMixin {
 		String instantiatedListOrSetValue = this._makeProcessValueCode("_value", listOrSetValueType);
 		String effectiveValueIdentifier = valueIdentifier;
 		String nullableChar = (node.isNullable ? "?" : "");
-		if (node.isRx()) {
-			effectiveValueIdentifier = "${valueIdentifier}${nullableChar}.value";
-			nullableChar = (listOrSetValueType.isNullable ? "?" : "");
-		}
+		// if (node.isRx()) {
+		// 	effectiveValueIdentifier = "${valueIdentifier}${nullableChar}.value";
+		// 	nullableChar = (listOrSetValueType.isNullable ? "?" : "");
+		// }
 
 		String generatedList = """
 			${effectiveValueIdentifier}${nullableChar}.map((_value) => ${instantiatedListOrSetValue}).toList()

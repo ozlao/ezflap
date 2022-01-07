@@ -1,4 +1,5 @@
 
+import 'package:ezflap/src/Annotations/EzWidget/Reflectors/EzflapWidgetsReflector.dart';
 import 'package:ezflap/src/Annotations/EzWidget/Visitors/EzProp/EzPropVisitor.dart';
 import 'package:ezflap/src/Service/Error/SvcLogger_.dart';
 import 'package:ezflap/src/Service/Parser/Mustache/SvcMustacheParser_.dart';
@@ -69,7 +70,7 @@ abstract class TransformerBase {
 			// it's an ezFlap widget. check by prop.
 			// TODO: improve this
 			EzPropVisitor ezPropVisitor = EzPropVisitor();
-			ezPropVisitor.visitAll(classDescriptor.getStateClassElementAndUp());
+			ezPropVisitor.visitAll(classDescriptor.getStateClassElementAndUp(EzflapWidgetsReflector.tryGetParentClassElementFromEzWidgetExtend));
 			EzPropData? ezPropData = ezPropVisitor.tryGetEzPropData(parameterName);
 			return (ezPropData != null);
 		}

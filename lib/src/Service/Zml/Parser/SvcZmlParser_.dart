@@ -23,7 +23,6 @@ class SvcZmlParser extends EzServiceBase {
 	static const CHILD_TAG_POSITIONAL_PARAMETER_PREFIX = ":";
 
 	static const _Z_CONSTRUCTOR_ATTR_NAME = "z-constructor";
-	static const _Z_KEY_ATTR_NAME = "z-key";
 	static const _Z_IF_ATTR_NAME = "z-if";
 	static const _Z_SHOW_ATTR_NAME = "z-show";
 	static const _Z_FOR_ATTR_NAME = "z-for";
@@ -31,7 +30,6 @@ class SvcZmlParser extends EzServiceBase {
 	static const _Z_ON_PREFIX = "z-on";
 	static const _Z_MODEL_PREFIX = "z-model";
 	static const _Z_MODEL_ATTR_NAME = "z-model";
-	static const _Z_MODEL_TYPE_LITERAL_ATTR_NAME = "z-model-type-literal";
 	static const _Z_ATTR_PREFIX = "z-attr";
 	static const _Z_REF_ATTR_NAME = "z-ref";
 	static const _Z_REFS_ATTR_NAME = "z-refs";
@@ -146,7 +144,6 @@ class SvcZmlParser extends EzServiceBase {
 				
 			false
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_CONSTRUCTOR_ATTR_NAME, (value) => tag.zCustomConstructorName = value)
-			|| this._tryPopulateAttributeExplicit(xAttr, _Z_KEY_ATTR_NAME, (value) => tag.zKey = value)
 			|| this._tryPopulateAttributeExplicit(xAttr, _STRING_ATTR_CLASS, (value) => tag.stringAttrClass = value)
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_IF_ATTR_NAME, (value) => tag.zIf = value)
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_SHOW_ATTR_NAME, (value) => tag.zShow = value)
@@ -157,7 +154,6 @@ class SvcZmlParser extends EzServiceBase {
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_BUILDER_ATTR_NAME, (value) => tag.zBuilder = value)
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_NAME_ATTR_NAME, (value) => tag.zName = value)
 			|| this._tryPopulateAttributeExplicit(xAttr, _Z_SCOPE_ATTR_NAME, (value) => tag.zScope = value)
-			|| this._tryPopulateAttributeExplicit(xAttr, _Z_MODEL_TYPE_LITERAL_ATTR_NAME, (value) => tag.zModelTypeLiteral = value)
 			|| this._tryPopulateAttributeZBind(tag, xAttr)
 			|| this._tryPopulateAttributeZFor(tag, xAttr)
 			|| this._tryPopulateAttributeZOn(tag, xAttr)
@@ -359,7 +355,6 @@ class SvcZmlParser extends EzServiceBase {
 			if (
 				false
 				|| tag.zCustomConstructorName != null
-				|| tag.zKey != null
 				|| tag.stringAttrClass != null
 				|| tag.zIf != null
 				|| tag.zShow != null
