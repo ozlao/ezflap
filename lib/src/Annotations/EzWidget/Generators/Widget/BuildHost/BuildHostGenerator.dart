@@ -91,7 +91,6 @@ class BuildHostGenerator extends WidgetGeneratorBase {
 		String selfWidgetProcessorAndReturn = this._makeSelfWidgetProcessor();
 		return """
 			Widget build(BuildContext context, bool preferInitial) {
-				//Widget selfWidget = this._buildSelf(context, preferInitial);
 				Widget Function() funcMakeSelfWidget = () => this._buildSelf(context, preferInitial);
 				${selfWidgetProcessorAndReturn}
 			}
@@ -101,9 +100,7 @@ class BuildHostGenerator extends WidgetGeneratorBase {
 	String _makeBuildAsParentFunction() {
 		String selfWidgetProcessorAndReturn = this._makeSelfWidgetProcessor();
 		return """
-			//Widget buildAsParent(BuildContext context, bool preferInitial, Widget inheritingWidget) {
 			Widget buildAsParent(BuildContext context, bool preferInitial, Widget Function() funcMakeInheritingWidget) {
-				//Widget selfWidget = this._buildSelf(context, preferInitial, inheritingWidget);
 				Widget Function() funcMakeSelfWidget = () => this._buildSelf(context, preferInitial, funcMakeInheritingWidget);
 				${selfWidgetProcessorAndReturn}
 			}
@@ -124,13 +121,11 @@ class BuildHostGenerator extends WidgetGeneratorBase {
 	String _makeSelfWidgetProcessor() {
 		if (!this.isExtending()) {
 			return """
-				//return selfWidget;
 				return funcMakeSelfWidget();
 			""";
 		}
 
 		return """
-			//return super.buildAsParent(context, preferInitial, selfWidget);
 			return super.buildAsParent(context, preferInitial, funcMakeSelfWidget);
 		""";
 	}
